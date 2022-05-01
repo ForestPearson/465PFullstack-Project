@@ -6,6 +6,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## About Project
+
+This project is a fullstack mtg site that makes use of Laraval 9, PHP, JavaScript, HTML, and PostgreSQL.
+
+## Build instructions
+
+To build this project go through the following instructions:
+
+- obtain the .env file and deposit it within the projects root directory.
+- Ensure that composer and php >= 8 are installed.
+- obtain a the compatible php.ini file and deposit it in the php directory.
+- run composer install within the terminal in the directory.
+- In terminal type php artisan serve
+- Open local browser to http://127.0.0.1:8000
+
 
 ## About Laravel
 
@@ -59,6 +74,10 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## Team members
+- Forest Pearson
+- Ian Wasson
+- Zachary Chronister
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
