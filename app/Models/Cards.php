@@ -6,6 +6,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+
 final class Cards extends Model {
     const TABLE = 'cards';
 
