@@ -18,4 +18,8 @@ class ProfileController extends Controller {
         return view('profile', compact('account', 'decks', 'cards', 'card_rel'));
     }
 
+    public function signUp() {
+        return view('signup');
+    }
+
 }

@@ -17,3 +17,8 @@ use App\Http\Controllers\WelcomeController;
 Route::controller(WelcomeController::class)->group(function() {
     Route::get('/', 'show')->name('welcome');
 });
+
+Route::controller(ProfileController::class)->group(function() {
+    Route::get('/profile', 'show')->name('profile');
+    Route::get('/signup', 'signUp')->name('signup');
+});
