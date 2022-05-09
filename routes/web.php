@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,9 @@ Route::controller(WelcomeController::class)->group(function() {
 Route::controller(ProfileController::class)->group(function() {
     Route::get('/profile', 'show')->name('profile');
     Route::get('/signup', 'signUp')->name('signup');
+});
+
+Route::controller(AdminController::class)->group(function() {
+    Route::get('/admin', 'show')->name('admin');
+    Route::get('/sync', 'syncDB')->name('sync');
 });
