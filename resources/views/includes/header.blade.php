@@ -28,17 +28,25 @@
         crossorigin="anonymous"
         />
         <!-- Bootstrap JS -->
-        <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"
-        ></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" 
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" 
+        crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" 
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+        crossorigin="anonymous">
+        </script>
+        
     </head>
     <body class="bg-dark">
         <nav class="navbar sticky-top navbar-expand-sm navbar-dark" style="background-color: rgb(78, 78, 78);">
             <div class="container">
             <a
-            href="index.html" 
+            href="{{ route('welcome') }}" 
             class="navbar-brand mb=0 h1">
             <img
                 class="align-middle"
@@ -62,23 +70,23 @@
             class="collapse navbar-collapse" 
             id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                <a href="index.html" class="nav-link">
+                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
+                <a class="nav-link" href="{{ route('welcome') }}">
                     Home
                 </a>
                 </li>
-                <li class="nav-item">
-                <a href="cards.html" class="nav-link">
+                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
+                <a class="nav-link" href="{{ route('welcome') }}">                                              {{-- come back to fix routes --}}
                     Browse Cards
                 </a>
                 </li>
-                <li class="nav-item">
-                <a href="decks.html" class="nav-link">
+                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
+                <a class="nav-link" href="{{ route('welcome') }}">
                     Your Decks
                 </a>
                 </li>
-                <li class="nav-item">
-                <a href="account.html" class="nav-link">
+                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
+                <a class="nav-link" href="{{ route('welcome') }}">
                     Account
                 </a>
                 </li>
