@@ -17,11 +17,11 @@
         </div>
         <div class="mb-3 row">
             <label for="name2" class="form-label col-sm-6">Last name:</label>
-            <input type="name" class="form-control col" id="name2">
+            <input type="name" class="form-control col" id="name2" value={{ $lastName }}>
         </div>
             <div class="mb-3 row">
             <label for="email1" class="form-label col-sm-6">Email:</label>
-            <input type="email" class="form-control col" id="email1">
+            <input type="email" class="form-control col" id="email1" value={{ $email }}>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary col mx-1">Submit</button>

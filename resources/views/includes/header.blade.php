@@ -45,54 +45,50 @@
     <body class="bg-dark">
         <nav class="navbar sticky-top navbar-expand-sm navbar-dark" style="background-color: rgb(78, 78, 78);">
             <div class="container">
-            <a
-            href="{{ route('welcome') }}" 
-            class="navbar-brand mb=0 h1">
-            <img
-                class="align-middle"
-                src="{{ asset('/image/logo4.png') }}"
-                alt="Logo Icon" 
-                width="40" 
-                height="40"
-            />
-            </a>
-            <button 
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            class="navbar-toggler"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div 
-            class="collapse navbar-collapse" 
-            id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
-                <a class="nav-link" href="{{ route('welcome') }}">
-                    Home
+                <a href="{{ route('welcome') }}" class="navbar-brand mb=0 h1">
+                    <img
+                        class="align-middle"
+                        src="{{ asset('/image/logo4.png') }}"
+                        alt="Logo Icon" 
+                        width="40" 
+                        height="40"
+                    />
                 </a>
-                </li>
-                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
-                <a class="nav-link" href="{{ route('welcome') }}">                                              {{-- come back to fix routes --}}
-                    Browse Cards
-                </a>
-                </li>
-                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
-                <a class="nav-link" href="{{ route('welcome') }}">
-                    Your Decks
-                </a>
-                </li>
-                <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
-                <a class="nav-link" href="{{ route('profile') }}">
-                    Profile
-                </a>
-                </li>
-            </ul>
+                <button 
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item @if (Route::current()->getName() == 'Welcome') active @endif">
+                            <a class="nav-link" href="{{ route('welcome') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item @if (Route::current()->getName() == '') active @endif">
+                            <a class="nav-link" href="{{ route('welcome') }}">
+                                Browse Cards
+                            </a>
+                        </li>
+                        <li class="nav-item @if (Route::current()->getName() == '') active @endif">
+                            <a class="nav-link" href="{{ route('welcome') }}">
+                                Your Decks
+                            </a>
+                        </li>
+                        <li class="nav-item @if (Route::current()->getName() == 'Profile') active @endif">
+                            <a class="nav-link" href="{{ route('profile') }}">
+                                Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </nav>
         @yield('body')
     </body>

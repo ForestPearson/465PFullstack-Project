@@ -14,7 +14,8 @@ class ProfileController extends Controller {
     public function show() {
         $firstName = 'tempFirst';
         $lastName = 'tempLast';
-        return view('profile', compact('firstName', 'lastName'));
+        $email = 'email@temp.com';
+        return view('profile', compact('firstName', 'lastName', 'email'));
     }
 
     public function signUp() {
