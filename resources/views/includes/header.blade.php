@@ -86,8 +86,8 @@
                 </a>
                 </li>
                 <li class="nav-item @if (Route::current()->getName() == "availability") active @endif">
-                <a class="nav-link" href="{{ route('welcome') }}">
-                    Account
+                <a class="nav-link" href="{{ route('profile') }}">
+                    Profile
                 </a>
                 </li>
             </ul>
