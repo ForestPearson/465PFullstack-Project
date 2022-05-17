@@ -13,15 +13,6 @@ CREATE TABLE cards (
 	CONSTRAINT cards_pk PRIMARY KEY("card_id")
 );
 
-CREATE TABLE accounts (
-	account_id INT NOT NULL,
-	created_at TIMESTAMP,
-	updated_at TIMESTAMP,
-	deleted_at TIMESTAMP,
-	CONSTRAINT accounts_pk PRIMARY KEY("account_id")
-);
-
-
 CREATE TABLE decks (
 	deck_id INT NOT NULL,
 	account_id INT NOT NULL,

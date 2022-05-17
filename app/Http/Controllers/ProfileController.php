@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -12,9 +13,11 @@ use App\Models\Accounts;
 
 class ProfileController extends Controller {
     public function show() {
-        $firstName = 'tempFirst';
-        $lastName = 'tempLast';
-        $email = 'email@temp.com';
+        $user = Auth::user();
+        dd($user);
+        $firstName = $user->first_name;
+        $lastName = $user->last_name;
+        $email = $user->email;
         return view('profile', compact('firstName', 'lastName', 'email'));
     }
 
