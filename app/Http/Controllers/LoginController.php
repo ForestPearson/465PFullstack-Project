@@ -24,6 +24,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
  
             //return redirect()->intended('dashboard');
+
             return redirect()->back()->with('success', 'You are logged in');
         }
         //if (Auth::guard('admin')->attempt($credentials)) {

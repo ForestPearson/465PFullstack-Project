@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::controller(AdminController::class)->group(function() {
     Route::get('/admin', 'show')->name('admin');
     Route::get('/sync', 'syncDB')->name('sync');
 });
+
+Route::post('login', [LoginController::class,'authenticate'])->name('login');
+
 Route::controller(UserController::class)->group(function() {
     Route::get('/authentication', function () {
         // Retrieve a piece of data from the session...

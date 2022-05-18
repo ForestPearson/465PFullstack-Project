@@ -21,7 +21,7 @@ Route::middleware('auth:api')->group(function(){
   Route::get('user', [AuthController::class,'authenticatedUserDetails']);
 });
 */
-Route::post('login', [LoginController::class,'authenticate'])->name('login');
+//Route::post('login', [LoginController::class,'authenticate'])->name('login');
 //Route::post('login', [AuthController::class,'login'])->name('login');
 Route::post('register', [AuthController::class,'register'])->name('register');
 
