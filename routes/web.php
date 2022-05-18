@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,16 @@ Route::controller(ProfileController::class)->group(function() {
 Route::controller(AdminController::class)->group(function() {
     Route::get('/admin', 'show')->name('admin');
     Route::get('/sync', 'syncDB')->name('sync');
+});
+Route::controller(UserController::class)->group(function() {
+    Route::get('/authentication', function () {
+        // Retrieve a piece of data from the session...
+        $value = session('key');
+     
+        // Specifying a default value...
+        $value = session('key', 'default');
+     
+        // Store a piece of data in the session...
+        session(['key' => 'value']);
+    });//->name('authenticate');
 });
