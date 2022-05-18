@@ -10,6 +10,7 @@ use App\Models\User;
 class WelcomeController extends Controller
 {
     public function show() {
-        return view('welcome');
+        $user = Auth::user();
+        return view('welcome', compact('user'));
     }
 }
