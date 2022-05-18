@@ -21,28 +21,78 @@ class AdminController extends Controller {
     //the DB is empty or the MTGSDK is updated.
     public function syncDB(){
         //Copy all cards over from the MTG SDK.
-        $cards = Card::all();
+        $pageNum = 0;
+        do {
+            $cards = Card::where(['page' => $pageNum, 'pageSize' => 100])->all();
 
-        //loop through all cards and insert them into the DB.
-        foreach($cards as $card){
-            //Check if the card is already in the DB.
-            $card_current = Cards::where('card_id', $card->id)->first();
-            //If it is, update the card.
-            if(!$card_current){
-                $card_model = new Cards;
-                $card_model->card_id = $card->id;
-                $card_model->card_name = $card->name;
-                $card_model->manacost = $card->manaCost;
-                $card_model->colors = $card->colors;
-                $card_model->type = $card->type;
-                $card_model->rarity = $card->rarity;
-                $card_model->card_set = $card->set;
-                $card_model->multiverseid = $card->multiverseId;
-                $card_model->image_url = $card->imageUrl;
-                $card_model->save();
+            foreach($cards as $card){
+                if(!isset($card->multiverseid)) { continue; }
+
+                //Check if the card is already in the DB.
+                $card_current = Cards::where('multiverseid', $card->multiverseid)->first();
+            
+                //If it is, update the card.
+                if(!$card_current){
+                    $card_model = new Cards;
+
+                    if(!isset($card->name)) { 
+                        $card->name = "N\A";
+                    } else {
+                        $card_model->card_name = $card->name;
+                    }
+                    
+                    if(!isset($card->manaCost)) {
+                        $card_model->manacost = "N\A";
+                    } else {
+                        $card_model->manacost = $card->manaCost;
+                    }
+
+                    $colorString = "";
+                    if(!isset($card->colors)) { 
+                        $colorString = "N\A";
+                    }
+                    else {
+                        foreach($card->colors as $color){
+                            $colorString = $colorString . $color;
+                        }
+                    }
+                    $card_model->colors = $colorString;
+
+                    if(!isset($card->type)) {
+                        $card_model->type = "N\A";
+                    } else {
+                        $card_model->type = $card->type;
+                    }
+                    
+                    if(!isset($card->rarity)) {
+                        $card_model->rarity = "N\A";
+                    } else {
+                        $card_model->rarity = $card->rarity;
+                    }
+                    
+                    if(!isset($card->set)) {
+                        $card_model->card_set = "N\A";
+                    } else {
+                        $card_model->card_set = $card->set;
+                    }
+                    
+                    $card_model->multiverseid = intval($card->multiverseid);
+
+                    if(!isset($card->imageUrl)) {
+                        $card_model->image_url = "https://i.pinimg.com/474x/ca/9c/f3/ca9cf3805131982d0b205b694022c637--magic-cards-web-browser.jpg";
+                    }
+                    else {
+                        $card_model->image_url = $card->imageUrl;
+                    }
+                    
+                    $card_model->save();
+                }
             }
-        }
+            $pageNum += 1;
+            set_time_limit(60);
+        } while($cards);
+        
         //return the view with the cards.
-        return redirect()->route('admin')->with(['success' => 'Cards synced successfully.']);
+        return redirect()->route('admin');
     }
 }

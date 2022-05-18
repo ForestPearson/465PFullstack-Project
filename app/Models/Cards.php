@@ -13,8 +13,8 @@ final class Cards extends Model {
     protected $table = self::TABLE;
     protected $fillable = [];
 
-    public function card_id() {
-        return $this->card_id;
+    public function id() {
+        return $this->id;
     }
 
     public function card_name() {
@@ -56,6 +56,6 @@ final class Cards extends Model {
     public function updated_at() {
         return new Carbon($this->updated_at);
     }
-
+    
 }
 ?>
