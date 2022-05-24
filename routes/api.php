@@ -28,3 +28,11 @@ Route::post('register', [AuthController::class,'register'])->name('register');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->group(function () {
+  Route::get('getCardByName', [AuthController::class,'getCardByName'])->name('getCardByName');
+  Route::get('getCardsByColor', [AuthController::class,'getCardsByColor'])->name('getCardsByColor');
+  Route::get('getCardsBySet', [AuthController::class,'getCardsBySet'])->name('getCardsBySet');
+  Route::get('getCardsByType', [AuthController::class,'getCardsByType'])->name('getCardsByType');
+  Route::get('getCardsByRarity', [AuthController::class,'getCardsByRarity'])->name('getCardsByRarity');
+});
