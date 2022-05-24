@@ -65,7 +65,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item @if (Route::current()->getName() == 'Welcome') active @endif">
                             <a class="nav-link" href="{{ route('welcome') }}">
                                 Home
@@ -76,20 +76,65 @@
                                 Browse Cards
                             </a>
                         </li>
+                        @if (Auth::user() != NULL)
                         <li class="nav-item @if (Route::current()->getName() == '') active @endif">
                             <a class="nav-link" href="{{ route('welcome') }}">
                                 Your Decks
                             </a>
                         </li>
-                        <li class="nav-item @if (Route::current()->getName() == 'Profile') active @endif">
-                            <a class="nav-link" href="{{ route('profile') }}">
-                                Profile
-                            </a>
-                        </li>
+                            <li class="nav-item @if (Route::current()->getName() == 'Profile') active @endif">
+                                <a class="nav-link" href="{{ route('profile') }}">
+                                    Profile
+                                </a>
+                            </li>
+                        @endif
                     </ul>
+                    
+                    <span class="my-2 my-lg-0">
+                        @if (Auth::user() == NULL)
+                            <button onclick="window.location='{{ route("signup") }}'" class="btn btn-primary col mx-1">Sign Up</button>
+                            
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">Sign in</button>
+                        @else
+                            <button type="button" href="{{ route('logout') }}" class="btn btn-primary">Sign Out</button>
+                        @endif
+                    </span>
                 </div>
             </div>
         </nav>
+
+        <!-- Modal -->
+        <form action="{{ route('login') }}" method="POST" enctype="mulipart/form-data">
+        {{ csrf_field() }}
+            <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header text-dark">
+                            <h5 class="modal-title" id="ModalLongTitle">Sign-in</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3 row">
+                                <label for="email" class="form-label col-sm-6">Email:</label>
+                                <input type="email" name="email" class="form-control col" id="email">
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="password" class="form-label col-sm-6">Password:</label>
+                                <input type="password" name="password" class="form-control col" id="password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Sign-in</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         @yield('body')
     </body>
     
