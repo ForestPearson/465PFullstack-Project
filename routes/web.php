@@ -34,6 +34,8 @@ Route::controller(AdminController::class)->group(function() {
 
 Route::post('login', [LoginController::class,'authenticate'])->name('login');
 
+Route::post('logout', [LoginController::class,'authenticate'])->name('logout');
+
 Route::controller(UserController::class)->group(function() {
     Route::get('/authentication', function () {
         // Retrieve a piece of data from the session...
