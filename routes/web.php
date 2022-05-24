@@ -48,3 +48,7 @@ Route::controller(UserController::class)->group(function() {
         session(['key' => 'value']);
     });//->name('authenticate');
 });
+
+Route::controller(CardController::class)->group(function() {
+    Route::get('/browse', 'show')->name('browse');
+});
