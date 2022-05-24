@@ -6,7 +6,7 @@
 <div class="container pt-4 bootstrap-grid text-light mb-5">
     @foreach ($allCards as $card)
         <img
-            class="align-middle m-2 mtgCard hover"
+            class="align-middle m-2 mtgCard"
             src="{{ $card->image_url; }}"
             alt="Logo Icon" 
             height="300em"
