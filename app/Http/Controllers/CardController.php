@@ -13,7 +13,9 @@ use App\Models\Accounts;
 class CardController extends Controller {
 
     public function show() {
-        return view('browse');
+        $allCards = Cards::all()->paginate(50);
+
+        return view('browse', compact('allCards'));
     }
 
     public function getCardByName(Request $request) {
