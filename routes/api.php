@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RandomUnMicroService;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,7 +25,7 @@ Route::middleware('auth:api')->group(function(){
 //Route::post('login', [LoginController::class,'authenticate'])->name('login');
 //Route::post('login', [AuthController::class,'login'])->name('login');
 Route::post('register', [AuthController::class,'register'])->name('register');
-
+Route::get('RandomUn', [RandomUnMicroService::class,'un'])->name('RandomUn');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
