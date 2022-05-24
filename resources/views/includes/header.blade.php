@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li class="nav-item @if (Route::current()->getName() == '') active @endif">
-                            <a class="nav-link" href="{{ route('welcome') }}">
+                            <a class="nav-link" href="{{ route('browse') }}">
                                 Browse Cards
                             </a>
                         </li>
