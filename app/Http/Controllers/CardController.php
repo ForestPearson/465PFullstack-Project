@@ -13,7 +13,7 @@ use App\Models\Accounts;
 class CardController extends Controller {
 
     public function show() {
-        $allCards = Cards::all()->paginate(50);
+        $allCards = Cards::paginate(50);
 
         return view('browse', compact('allCards'));
     }
