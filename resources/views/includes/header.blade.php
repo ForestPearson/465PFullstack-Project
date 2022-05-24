@@ -97,7 +97,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">Sign in</button>
                         @else
-                            <button type="button" href="{{ route('logout') }}" class="btn btn-primary">Sign Out</button>
+                            <a type="button" href="{{ route('logout') }}" class="btn btn-primary">Sign Out</a>
                         @endif
                     </span>
                 </div>
