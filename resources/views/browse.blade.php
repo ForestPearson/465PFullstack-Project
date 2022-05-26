@@ -83,7 +83,7 @@
 
         axios.get('{{ route('getCardsByColor') }}' + colorString)
         .then(function(response) {
-            //console.log(response.data);
+            console.log(response.data);
             response.data.forEach(function(card){
                 let image = $("<img/>", {
                     src: card.image_url,

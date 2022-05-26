@@ -20,8 +20,8 @@ class CardController extends Controller {
 
     public function getCardByName(Request $request) {
         $card_name = $request->input('card_name');
-        $card = Cards::where('card_name', $card_name)->first();
-        if(!$card) {
+        $cards = Cards::where('card_name', 'like', '%' . $card_name . '%')->get();
+        if(!$cards) {
             return response()->json(['error' => 'Card not found.'], 404);
         }
         return response()->json($card);
@@ -70,7 +70,6 @@ class CardController extends Controller {
             return response()->json($cards);
         }
         return response()->json(['error' => 'No cards found.'], 404);
-        
     }
 
     public function getCardsBySet(Request $request) {
@@ -84,7 +83,7 @@ class CardController extends Controller {
 
     public function getCardsByType(Request $request) {
         $type = $request->input('type');
-        $cards = Cards::where('type', $type)->get();
+        $cards = Cards::where('type', 'like', $type)->get();
         if(!$cards) {
             return response()->json(['error' => 'No cards found.'], 404);
         }
