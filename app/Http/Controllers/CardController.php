@@ -28,12 +28,49 @@ class CardController extends Controller {
     }
 
     public function getCardsByColor(Request $request) {
-        $color = $request->input('color');
-        $cards = Cards::where('colors', $color)->get();
-        if(!$cards) {
-            return response()->json(['error' => 'No cards found.'], 404);
+        $colors = explode(",", $request->input('color'));
+        $colorCount = count($colors);
+        
+        if($colorCount == 1) {
+            $cards = Cards::where('colors', $colors[0])->get();
+            return response()->json($cards);
+        } 
+        if($colorCount == 2) {
+            $cards = Cards::where('colors', 'like', '%' . $colors[0] . '%')
+                          ->where('colors', 'like', '%' . $colors[1] . '%')
+                          ->whereRaw('LENGTH(colors) = ?', strlen($colors[0]) + strlen($colors[1]))
+                          ->get();
+            return response()->json($cards);
         }
-        return response()->json($cards);
+        if($colorCount == 3) {
+            $cards = Cards::where('colors', 'like', '%' . $colors[0] . '%')
+                          ->where('colors', 'like', '%' . $colors[1] . '%')
+                          ->where('colors', 'like', '%' . $colors[2] . '%')
+                          ->whereRaw('LENGTH(colors) = ?', strlen($colors[0]) + strlen($colors[1]) + strlen($colors[2]))
+                          ->get();
+            return response()->json($cards);
+        }
+        if($colorCount == 4) {
+            $cards = Cards::where('colors', 'like', '%' . $colors[0] . '%')
+                          ->where('colors', 'like', '%' . $colors[1] . '%')
+                          ->where('colors', 'like', '%' . $colors[2] . '%')
+                          ->where('colors', 'like', '%' . $colors[3] . '%')
+                          ->whereRaw('LENGTH(colors) = ?', strlen($colors[0]) + strlen($colors[1]) + strlen($colors[2]) + strlen($colors[3]))
+                          ->get();
+            return response()->json($cards);
+        }
+        if($colorCount == 5) {
+            $cards = Cards::where('colors', 'like', '%' . $colors[0] . '%')
+                          ->where('colors', 'like', '%' . $colors[1] . '%')
+                          ->where('colors', 'like', '%' . $colors[2] . '%')
+                          ->where('colors', 'like', '%' . $colors[3] . '%')
+                          ->where('colors', 'like', '%' . $colors[4] . '%')
+                          ->whereRaw('LENGTH(colors) = ?', strlen($colors[0]) + strlen($colors[1]) + strlen($colors[2]) + strlen($colors[3]) + strlen($colors[4]))
+                          ->get();
+            return response()->json($cards);
+        }
+        return response()->json(['error' => 'No cards found.'], 404);
+        
     }
 
     public function getCardsBySet(Request $request) {

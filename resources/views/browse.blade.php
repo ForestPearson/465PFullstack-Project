@@ -75,7 +75,7 @@
         }
         console.log(COLORS);
 
-        let colorString = "?color=" + COLORS.join('');
+        let colorString = "?color=" + COLORS.join(',');
         axios.get('{{ route('getCardsByColor') }}' + colorString)
         .then(function(response) {
             console.log(response.data);
