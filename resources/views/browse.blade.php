@@ -5,7 +5,7 @@
   <button class="btn btn-secondary dropdown-toggle" type="button" id="filter" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
     Card Filter
   </button>
-  <ul class="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="filter">
+  <ul class="dropdown-menu dropdown-menu-dark p-2 " aria-labelledby="filter">
     <p>Mana Type</p>
     <li>
         <a>
@@ -35,23 +35,6 @@
     </li>
     <li><hr class="dropdown-divider"></li>
 
-    <!--Mana Cost Filter -->
-    <p>Mana Cost</p>
-    <li>
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="minMana" class="sr-only"></label>
-                <input type="text" class="form-control" id="minMana" placeholder="Min">
-            </div>
-            <div>
-                <label for="maxMana" class="sr-only"></label>
-                <input type="text" class="form-control" id="maxMana" placeholder="Max">
-            </div>
-            <button type="submit" class="btn-primary">Go</button>
-        </form>
-    </li>
-    <li><hr class="dropdown-divider"></li>
-
     <!-- Type Filter -->
     <p>Type</p>
     <li>
@@ -71,7 +54,6 @@
             <input onclick="//function" type="radio" class="btn-check" id="instant" autocomplete="off">
             <label class="btn btn-outline-warning" for="instant">Instant</label>
         </a>
-        <br>
         <a>
             <input onclick="//function" type="radio" class="btn-check" id="land" autocomplete="off">
             <label class="btn btn-outline-warning" for="land">Land</label>
@@ -109,26 +91,12 @@
     </li>
     <li><hr class="dropdown-divider"></li>
 
-    <!-- Search by... -->
-    <p>Search by...</p>
+    <!-- Search by Name -->
+    <p>Search by Name</p>
     <li>
         <form class="container-fluid">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="searchByDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Search
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="searchByDropdown">
-                    <li><a class="dropdown-item">Card Name</a></li>
-                    <li><a class="dropdown-item">Card Set</a></li>
-                    <li><a class="dropdown-item">ID</a></li>
-                    <li><a class="dropdown-item">Multiverse ID</a></li>
-                </ul>
-            </div> 
-            <div class="input-group">
-                <label for="searchBy" class="sr-only"></label>
-                <input type="text" class="form-control" id="searchBy" placeholder="Search by...">
-            </div>
-            <button type="submit" class="btn-primary">Go</button>
+            <input type="text" class="form-control" id="searchByName" placeholder="Search">
+            <button type="submit" class="btn btn-primary">Go</button>
         </form>
     </li>
 
