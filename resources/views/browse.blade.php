@@ -106,20 +106,6 @@
 <div class="container py-5 d-flex justify-content-center flex-wrap" id="cardResults">
 
 
-    @foreach ($allCards as $card)
-        <img
-            class="align-middle m-2 mtgCard"
-            src="{{ $card->image_url; }}"
-            alt="MTG Card" 
-            height="300px"
-        />    
-    @endforeach
-
-</div>
-
-<!--pagination-->
-<div class="container d-flex justify-content-center p-3" id="allCardPaginate">
-    {{ $allCards->links() }}
 </div>
 
 <!-- Filter by Color -->

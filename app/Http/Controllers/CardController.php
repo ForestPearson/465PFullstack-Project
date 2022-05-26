@@ -13,9 +13,10 @@ use App\Models\Accounts;
 class CardController extends Controller {
 
     public function show() {
-        $allCards = Cards::distinct('card_name')->orderBy('card_name')->paginate(50);
+        $allCards = Cards::distinct('card_name')->orderBy('card_name')->get();
+        $cards = json_encode($allCards);
 
-        return view('browse', compact('allCards'));
+        return view('browse', compact('cards'));
     }
 
     public function getCardByName(Request $request) {
@@ -83,7 +84,7 @@ class CardController extends Controller {
 
     public function getCardsByType(Request $request) {
         $type = $request->input('type');
-        $cards = Cards::where('type', 'like', $type)->get();
+        $cards = Cards::where('type', 'like', $type .'%')->get();
         if(!$cards) {
             return response()->json(['error' => 'No cards found.'], 404);
         }
