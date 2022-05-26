@@ -39,32 +39,32 @@
     <p>Type</p>
     <li>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="artifact" autocomplete="off">
-            <label class="btn btn-outline-warning" for="artifact">Artifact</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="artifact" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="artifact">Artifact</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="creature" autocomplete="off">
-            <label class="btn btn-outline-warning" for="creature">Creature</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="creature" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="creature">Creature</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="enchantment" autocomplete="off">
-            <label class="btn btn-outline-warning" for="enchantment">Enchantment</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="enchantment" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="enchantment">Enchantment</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="instant" autocomplete="off">
-            <label class="btn btn-outline-warning" for="instant">Instant</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="instant" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="instant">Instant</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="land" autocomplete="off">
-            <label class="btn btn-outline-warning" for="land">Land</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="land" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="land">Land</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="planeswalker" autocomplete="off">
-            <label class="btn btn-outline-warning" for="planeswalker">Planeswalker</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="planeswalker" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="planeswalker">Planeswalker</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="sorcery" autocomplete="off">
-            <label class="btn btn-outline-warning" for="sorcery">Sorcery</label>
+            <input onclick="//function" type="radio" class="btn-check" name="typeFilter" id="sorcery" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="sorcery">Sorcery</label>
         </a>
     </li>
     <li><hr class="dropdown-divider"></li>
@@ -73,20 +73,20 @@
     <li>
     <p>Rarity</p>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="common" autocomplete="off">
-            <label class="btn btn-outline-warning" for="common">common</label>
+            <input onclick="//function" type="radio" class="btn-check" name="rarityFilter" id="common" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="common">common</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="uncommon" autocomplete="off">
-            <label class="btn btn-outline-warning" for="uncommon">Uncommon</label>
+            <input onclick="//function" type="radio" class="btn-check" name="rarityFilter" id="uncommon" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="uncommon">Uncommon</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="rare" autocomplete="off">
-            <label class="btn btn-outline-warning" for="rare">Rare</label>
+            <input onclick="//function" type="radio" class="btn-check" name="rarityFilter" id="rare" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="rare">Rare</label>
         </a>
         <a>
-            <input onclick="//function" type="radio" class="btn-check" id="mythicRare" autocomplete="off">
-            <label class="btn btn-outline-warning" for="mythicRare">Mythic Rare</label> 
+            <input onclick="//function" type="radio" class="btn-check" name="rarityFilter" id="mythicRare" autocomplete="off">
+            <label class="btn btn-outline-warning mb-1" for="mythicRare">Mythic Rare</label> 
         </a>         
     </li>
     <li><hr class="dropdown-divider"></li>
@@ -94,9 +94,13 @@
     <!-- Search by Name -->
     <p>Search by Name</p>
     <li>
-        <form class="container-fluid">
-            <input type="text" class="form-control" id="searchByName" placeholder="Search">
-            <button type="submit" class="btn btn-primary">Go</button>
+        <form class="row">
+            <div class="col-8" style="margin-right: -1em;">
+                <input type="text" class="form-control" id="searchByName" placeholder="Search">
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
         </form>
     </li>
 
