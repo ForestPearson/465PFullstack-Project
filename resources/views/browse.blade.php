@@ -42,7 +42,7 @@
   </ul>
 </div>
 
-<div class="container py-5 d-flex justify-content-center flex-wrap">
+<div class="container py-5 d-flex justify-content-center flex-wrap" id="cardResults">
 
 
     @foreach ($allCards as $card)
@@ -50,17 +50,18 @@
             class="align-middle m-2 mtgCard"
             src="{{ $card->image_url; }}"
             alt="MTG Card" 
-            height="300em"
+            height="300px"
         />    
     @endforeach
 
 </div>
 
 <!--pagination-->
-<div class="container d-flex justify-content-center p-3">
+<div class="container d-flex justify-content-center p-3" id="allCardPaginate">
     {{ $allCards->links() }}
 </div>
 
+<!-- Filter by Color -->
 <script>
     let COLORS = []
 
@@ -76,13 +77,24 @@
         console.log(COLORS);
 
         let colorString = "?color=" + COLORS.join(',');
+
+        $(".mtgCard").remove();
+        $("#allCardPaginate").remove();
+
         axios.get('{{ route('getCardsByColor') }}' + colorString)
         .then(function(response) {
-            console.log(response.data);
+            //console.log(response.data);
+            response.data.forEach(function(card){
+                let image = $("<img/>", {
+                    src: card.image_url,
+                    class: "align-middle m-2 mtgCard",
+                    alt: "MTG Card", 
+                    height: "300px"
+                });
+                image.appendTo($('#cardResults'));
+            });
         });
     }
-
-
 </script>
 
 @endsection
