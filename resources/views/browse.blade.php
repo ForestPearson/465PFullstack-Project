@@ -9,27 +9,27 @@
     <p>Mana Type</p>
     <li>
         <a>
-            <input type="checkbox" class="btn-check" id="whiteMana" autocomplete="off">
+            <input onclick="filterByColor('White')" type="checkbox" class="btn-check" id="whiteMana" autocomplete="off">
             <label class="btn btn-outline-light" for="whiteMana">White</label>
         </a>
 
         <a>        
-            <input type="checkbox" class="btn-check" id="blueMana" autocomplete="off">
+            <input onclick="filterByColor('Blue')" type="checkbox" class="btn-check" id="blueMana" autocomplete="off">
             <label class="btn btn-outline-primary" for="blueMana">Blue</label>
         </a>
 
         <a>
-            <input type="checkbox" class="btn-check" id="blackMana" autocomplete="off">
+            <input onclick="filterByColor('Black')" type="checkbox" class="btn-check" id="blackMana" autocomplete="off">
             <label class="btn btn-outline-secondary" for="blackMana">Black</label>
         </a>
 
         <a>
-            <input type="checkbox" class="btn-check" id="redMana" autocomplete="off">
+            <input onclick="filterByColor('Red')" type="checkbox" class="btn-check" id="redMana" autocomplete="off">
             <label class="btn btn-outline-danger" for="redMana">Red</label>
         </a>        
 
         <a>
-            <input type="checkbox" class="btn-check" id="greenMana" autocomplete="off">
+            <input onclick="filterByColor('Green')" type="checkbox" class="btn-check" id="greenMana" autocomplete="off">
             <label class="btn btn-outline-success" for="greenMana">Green</label>
         </a>
     </li>
@@ -43,18 +43,7 @@
 </div>
 
 <div class="container py-5 d-flex justify-content-center flex-wrap">
-    <style>
-        .mtgCard:hover {
-            transform: scale(1.5);
-        }
-        .mtgCard {
-            transition: transform 0.2s ease;
-            box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
-            border-radius: 0;
-            border: 0;
-            margin-bottom: 1.5em;
-        }
-    </style>
+
 
     @foreach ($allCards as $card)
         <img
@@ -69,26 +58,37 @@
 
 <!--pagination-->
 <div class="container d-flex justify-content-center p-3">
-    <style>
-        li.page-item 
-        {
-            display: none;
-        }
-
-        .page-item:first-child,
-        .page-item:nth-child( 2 ),
-        .page-item:nth-last-child( 2 ),
-        .page-item:last-child,
-        .page-item.active,
-        .page-item.disabled 
-        {
-            display: block;
-        }
-    </style>
     {{ $allCards->links() }}
 </div>
 
+<script>
+    let COLORS = []
+
+    function filterByColor(color) {
+        if(COLORS.includes(color)) {
+            COLORS.splice(COLORS.indexOf(color), 1);
+            console.log(color + " unclicked");
+        }
+        else {
+            COLORS.push(color);
+            console.log(color + " clicked");
+        }
+        console.log(COLORS);
+
+        let colorString = "?color=" + COLORS.join('');
+        axios.get('{{ route('getCardsByColor') }}' + colorString)
+        .then(function(response) {
+            console.log(response.data);
+        });
+    }
+
+
+</script>
+
 @endsection
+
+
+
 
 <!--$allCards[0]->card_name
 tags:
