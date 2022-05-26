@@ -38,3 +38,10 @@ Route::controller(CardController::class)->group(function() {
   Route::get('getCardsByType', [CardController::class,'getCardsByType'])->name('getCardsByType');
   Route::get('getCardsByRarity', [CardController::class,'getCardsByRarity'])->name('getCardsByRarity');
 });
+Route::controller(DeckController::class)->group(function() {
+  Route::get('getUserDecks', [CardController::class,'getUserDecks'])->name('getUserDecks');
+  Route::get('getDeckByName', [CardController::class,'getDeckByName'])->name('getDeckByName');
+  Route::get('getDeckCards', [CardController::class,'getDeckCards'])->name('getDeckCards');
+  Route::get('createDeck', [CardController::class,'createDeck'])->name('createDeck');
+  Route::get('addCardsToDeck', [CardController::class,'addCardsToDeck'])->name('addCardsToDeck');
+});
