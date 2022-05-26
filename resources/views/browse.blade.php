@@ -35,10 +35,88 @@
     </li>
     <li><hr class="dropdown-divider"></li>
 
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <!--Mana Cost Filter
+    <p>Mana Cost</p>
+    <li>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="minMana" class="sr-only"></label>
+                <input type="text" class="form-control" id="minMana" placeholder="Min">
+            </div>
+            <div>
+                <label for="maxMana" class="sr-only"></label>
+                <input type="text" class="form-control" id="maxMana" placeholder="Max">
+            </div>
+            <button type="submit" class="btn-primary">Go</button>
+        </form>
+    </li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
+-->
+    <!-- Type Filter
+    <li>
+        <a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="typeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
+                    <li><a class="dropdown-item">Artifact</a></li>
+                    <li><a class="dropdown-item">Creature</a></li>
+                    <li><a class="dropdown-item">Enchantment</a></li>
+                    <li><a class="dropdown-item">Instant</a></li>
+                    <li><a class="dropdown-item">Land</a></li>
+                    <li><a class="dropdown-item">Planeswalker</a></li>
+                    <li><a class="dropdown-item">Sourcery</a></li>
+                </ul>
+            </div>            
+        </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+-->
+    <!-- Rarity Filter
+    <li>
+        <a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="rarityDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rarity
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rarityDropdown">
+                    <li><a class="dropdown-item">Common</a></li>
+                    <li><a class="dropdown-item">Uncommon</a></li>
+                    <li><a class="dropdown-item">Rare</a></li>
+                    <li><a class="dropdown-item">Mythic Rare</a></li>
+                </ul>
+            </div>            
+        </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+-->
+    <!-- Search by...
+    <li>
+        <a>
+
+
+            <form class="container-fluid">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="searchByDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Search by...
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="searchByDropdown">
+                        <li><a class="dropdown-item">Card Name</a></li>
+                        <li><a class="dropdown-item">Card Set</a></li>
+                        <li><a class="dropdown-item">ID</a></li>
+                        <li><a class="dropdown-item">Multiverse ID</a></li>
+                    </ul>
+                </div> 
+                <div class="input-group">
+                    <label for="searchBy" class="sr-only"></label>
+                    <input type="text" class="form-control" id="searchBy" placeholder="Search by...">
+                </div>
+                <button type="submit" class="btn-primary">Go</button>
+            </form>
+        </a>
+    </li>
+-->
   </ul>
 </div>
 
