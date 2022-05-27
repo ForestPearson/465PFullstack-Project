@@ -107,6 +107,27 @@
   </ul>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-slideout">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCardModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="addCardModalResult">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="container mb-5 py-5 d-flex justify-content-center flex-wrap" id="cardResults">
 
     
@@ -162,6 +183,18 @@
         });
     });
 
+    function populateModal(card) {
+        $(".mtgModalCard").remove();
+        $("#addCardModalLabel").text(card.card_name);
+        let image = $("<img/>", {
+                    src: card.image_url,
+                    class: "mtgModalCard",
+                    alt: "MTG Card", 
+                    height: "400px",
+                    id: card.multiverseid
+            });
+        image.appendTo("#addCardModalResult");
+    }
 
     function addColor(color) {
         if(COLORS.includes(color)) {
@@ -240,8 +273,12 @@
                     src: cards[i].image_url,
                     class: "align-middle m-2 mtgCard",
                     alt: "MTG Card", 
-                    height: "300px"
+                    height: "300px",
+                    id: cards[i].multiverseid
             });
+            image.click(function() { populateModal(cards[i]) });
+            image.attr("data-bs-toggle", "modal");
+            image.attr("data-bs-target", "#addCardModal");
             image.appendTo($('#cardResults'));
         }
     }
