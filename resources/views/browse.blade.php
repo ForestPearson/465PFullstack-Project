@@ -94,14 +94,14 @@
     <!-- Search by Name -->
     <p>Search by Name</p>
     <li>
-        <form class="row">
+        <div class="row">
             <div class="col-8" style="margin-right: -1em;">
                 <input type="text" class="form-control" id="searchByName" placeholder="Search">
             </div>
             <div class="col-2">
-                <button type="submit" class="btn btn-primary">Go</button>
+                <button onclick="addName()" class="btn btn-primary">Go</button>
             </div>
-        </form>
+        </div>
     </li>
 
   </ul>
@@ -153,6 +153,7 @@
     let COLORS = [];
     let TYPE;
     let RARITY;
+    let NAME;
 
     $(document).ready(function() {
         axios.get('{{ route('getAllCards') }}')
@@ -241,6 +242,12 @@
         displayResults(ALLCARDS, "first");
     }
 
+    function addName() {
+        NAME = $("#searchByName").val();
+        console.log(NAME);
+        displayResults(ALLCARDS, "first");
+    }
+
     function display(cards, direction) {
         let pageNum = 0;
         CURRENTCARDS = cards;
@@ -293,7 +300,7 @@
             return display(cards, direction);
         }
             
-        if(!COLORS.length && !TYPE && !RARITY) {
+        if(!COLORS.length && !TYPE && !RARITY && !NAME) {
             cards = ALLCARDS;
             return display(cards, direction);
         }
@@ -308,6 +315,11 @@
         if(TYPE) {
             apiCall += "type=" + TYPE + "&";
         }
+        if(NAME) {
+            apiCall += "card_name=" + NAME + "&";
+        }
+
+        console.log(apiCall);
 
         axios.get('{{ route('getMultiFilter') }}' + apiCall)
         .then(function(response) {

@@ -26,7 +26,7 @@ class CardController extends Controller {
 
     public function getCardByName(Request $request) {
         $card_name = $request->input('card_name');
-        $cards = Cards::where('card_name', 'like', '%' . $card_name . '%')->orderBy('card_name')->get();
+        $cards = Cards::where('card_name', 'like', '%' . $card_name . '%')->orderBy('card_name')->limit(10000)->get();    
         if(!$cards) {
             return response()->json(['error' => 'Card not found.'], 404);
         }
@@ -125,6 +125,19 @@ class CardController extends Controller {
         if($request->has('type'))
             $type = $request->input('type');
 
+        $name = NULL;
+        if($request->has('card_name'))
+            $name = $request->input('card_name');
+
+        if($colors && $rarity && $type && $name) {
+            $cards = $this->colorFunction($colors);
+            $cards = $cards->where('type', 'like', '%' . $type .'%')
+                          ->where('rarity', $rarity)
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
         if($colors && $rarity && $type) {
             $cards = $this->colorFunction($colors);
             $cards = $cards->where('type', 'like', '%' . $type .'%')
@@ -132,9 +145,41 @@ class CardController extends Controller {
                           ->orderBy('card_name')->get();
             return response()->json($cards);
         }
+
+        if($colors && $rarity && $name) {
+            $cards = $this->colorFunction($colors);
+            $cards = $cards->where('rarity', $rarity)
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
+        if($colors && $type && $name) {
+            $cards = $this->colorFunction($colors);
+            $cards = $cards->where('type', 'like', '%' . $type .'%')
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
+        if($rarity && $type && $name) {
+            $cards = Cards::where('type', 'like', '%' . $type .'%')
+                          ->where('rarity', $rarity)
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
         if($colors && $rarity) {
             $cards = $this->colorFunction($colors);
             $cards = $cards->where('rarity', $rarity)
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
+        if($colors && $name) {
+            $cards = $this->colorFunction($colors);
+            $cards = $cards->where('card_name', 'like', '%' . $name . '%')
                           ->orderBy('card_name')->get();
             return response()->json($cards);
         }
@@ -153,16 +198,34 @@ class CardController extends Controller {
             return response()->json($cards);
         }
 
+        if($rarity && $name) {
+            $cards = Cards::where('rarity', $rarity)
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
+        if($type && $name) {
+            $cards = Cards::where('type', 'like', '%' . $type .'%')
+                          ->where('card_name', 'like', '%' . $name . '%')
+                          ->orderBy('card_name')->get();
+            return response()->json($cards);
+        }
+
         if($colors && !$rarity && !$type) {
             return $this->getCardsByColor($request);
         }
 
-        if($rarity && !$colors && !$type) {
+        if($rarity && !$colors && !$type && !$name) {
             return $this->getCardsByRarity($request);
         }
 
-        if($type && !$colors && !$rarity) {
+        if($type && !$colors && !$rarity && !$name) {
             return $this->getCardsByType($request);
+        }
+
+        if($name && !$colors && !$rarity && !$type) {
+            return $this->getCardByName($request);
         }
 
         return response()->json(['error' => 'No cards found.'], 404);
