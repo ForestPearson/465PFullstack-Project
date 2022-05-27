@@ -5,9 +5,11 @@
   <button class="btn btn-secondary dropdown-toggle" type="button" id="filter" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
     Card Filter
   </button>
+    <button onclick="clearAllFilters()" class="btn btn-danger float-end">Clear All Filters</button>
+
   <ul class="dropdown-menu dropdown-menu-dark p-2 " aria-labelledby="filter">
     <p>Mana Type</p>
-    <li>
+    <li id="colorFilter">
         <a>
             <input onclick="addColor('White')" type="checkbox" class="btn-check" id="whiteMana" autocomplete="off">
             <label class="btn btn-outline-light" for="whiteMana">White</label>
@@ -37,7 +39,7 @@
 
     <!-- Type Filter -->
     <p>Type</p>
-    <li>
+    <li id="typeFilter">
         <a>
             <input onclick="addType('Artifact')" type="radio" class="btn-check typeRadio" name="typeFilter" id="artifact" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="artifact">Artifact</label>
@@ -70,7 +72,7 @@
     <li><hr class="dropdown-divider"></li>
 
     <!-- Rarity Filter -->
-    <li>
+    <li id="rarityFilter">
     <p>Rarity</p>
         <a>
             <input onclick="addRarity('Common')" type="radio" class="btn-check rarityRadio" name="rarityFilter" id="common" autocomplete="off">
@@ -107,6 +109,12 @@
   </ul>
 </div>
 
+<div>
+    <p class="text-light text-center fs-3" id="activeFilters"></p>
+</div>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-slideout">
@@ -133,7 +141,7 @@
     
 </div>
 
-<div class="container spinner-border text-warning d-flex justify-content-center" style="width: 3rem; height: 3rem;" role="status">
+<div id="loadingSpinner" class="container spinner-border text-warning d-flex justify-content-center" style="width: 3rem; height: 3rem;" role="status">
   <span class="sr-only">Loading...</span>
 </div>
 
@@ -156,6 +164,7 @@
     let NAME;
 
     $(document).ready(function() {
+        $('#loadingSpinner').removeClass('d-none');
         axios.get('{{ route('getAllCards') }}')
         .then(function(response) {
             ALLCARDS = response.data;
@@ -165,18 +174,11 @@
 
     $(document).ready(function() {
         $("input[type=radio]").click(function() {
-            // Get the storedValue
             var previousValue = $(this).data('storedValue');
-            // if previousValue = true then
-            //     Step 1: toggle radio button check mark.
-            //     Step 2: save data-StoredValue as false to indicate radio button is unchecked.
             if (previousValue) {
             $(this).prop('checked', !previousValue);
             $(this).data('storedValue', !previousValue);
             }
-            // If previousValue is other than true
-            //    Step 1: save data-StoredValue as true to for currently checked radio button.
-            //    Step 2: save data-StoredValue as false for all non-checked radio buttons.
             else{
             $(this).data('storedValue', true);
             $("input[type=radio]:not(:checked)").data("storedValue", false);
@@ -195,6 +197,25 @@
                     id: card.multiverseid
             });
         image.appendTo("#addCardModalResult");
+    }
+
+    function clearAllFilters() {
+        COLORS = [];
+        TYPE = null;
+        RARITY = null;
+        NAME = null;
+        $("#colorFilter").find("input[type=checkbox]").each(function() {
+            $(this).prop('checked', false);
+        });
+        $("#typeFilter").find("input[type=radio]").each(function() {
+            $(this).prop('checked', false);
+        });
+        $("#rarityFilter").find("input[type=radio]").each(function() {
+            $(this).prop('checked', false);
+        });
+        $("#searchByName").val("");
+        $("#activeFilters").text("");
+        displayResults(ALLCARDS, "first");
     }
 
     function addColor(color) {
@@ -249,6 +270,13 @@
     }
 
     function display(cards, direction) {
+        if(cards.length == 0) {
+            $('#loadingSpinner').addClass('d-none');
+            $("#cardResults").html("<h1 class='text-center text-light'>No cards found</h1>");
+            return;
+        }
+        $("#cardResults").html("");
+
         let pageNum = 0;
         CURRENTCARDS = cards;
 
@@ -273,7 +301,7 @@
 
         //unload any previous cards that exist on the page
         $(".mtgCard").remove();
-
+        $('#loadingSpinner').addClass('d-none');
         //loop through the cards and display them on the page
         for(let i = firstIndex; i < lastIndex; i++) {
             let image = $("<img/>", {
@@ -291,6 +319,7 @@
     }
 
     function displayResults(cards, direction) {
+        $('#loadingSpinner').removeClass('d-none');
         //check if we have unchecked all of the other filters,
         //if this is the case then we need to load the default set back in
         //update the currentCards that we are looking at
@@ -306,20 +335,25 @@
         }
             
         let apiCall = "?";
+        let activeFilters = "";
         if(COLORS.length) {
             apiCall += "color=" + COLORS.join(',') + "&";
+            activeFilters += ' / ' + COLORS.join(' / ') + ' / ';
         }
         if(RARITY) {
             apiCall += "rarity=" + RARITY + "&";
+            activeFilters += ' / ' + RARITY + ' / ';
         }
         if(TYPE) {
             apiCall += "type=" + TYPE + "&";
+            activeFilters += ' / ' + TYPE + ' / ';
         }
         if(NAME) {
             apiCall += "card_name=" + NAME + "&";
+            activeFilters += ' / ' + NAME + ' / ';
         }
 
-        console.log(apiCall);
+        $("#activeFilters").text(activeFilters);
 
         axios.get('{{ route('getMultiFilter') }}' + apiCall)
         .then(function(response) {
