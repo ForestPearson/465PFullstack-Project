@@ -45,6 +45,11 @@
         </script>
 
         <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer" 
+        />
 
     </head>
 
@@ -100,7 +105,7 @@
                             <button onclick="window.location='{{ route("signup") }}'" class="btn btn-primary col mx-1">Sign Up</button>
                             
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">Sign in</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCenter">Sign in</button>
                         @else
                             <a type="button" href="{{ route('logout') }}" class="btn btn-primary">Sign Out</a>
                         @endif
@@ -117,7 +122,7 @@
                     <div class="modal-content text-dark">
                         <div class="modal-header text-dark">
                             <h5 class="modal-title" id="ModalLongTitle">Sign-in</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -132,7 +137,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">Sign-in</button>
                         </div>
                     </div>

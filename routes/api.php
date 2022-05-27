@@ -32,9 +32,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(CardController::class)->group(function() {
+  Route::get('getAllCards', [CardController::class,'getAllCards'])->name('getAllCards');
   Route::get('getCardByName', [CardController::class,'getCardByName'])->name('getCardByName');
   Route::get('getCardsByColor', [CardController::class,'getCardsByColor'])->name('getCardsByColor');
   Route::get('getCardsBySet', [CardController::class,'getCardsBySet'])->name('getCardsBySet');
   Route::get('getCardsByType', [CardController::class,'getCardsByType'])->name('getCardsByType');
   Route::get('getCardsByRarity', [CardController::class,'getCardsByRarity'])->name('getCardsByRarity');
+  Route::get('getMultiFilter', [CardController::class,'getMultiFilter'])->name('getMultiFilter');
 });
