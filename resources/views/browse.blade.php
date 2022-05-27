@@ -186,38 +186,8 @@
         displayResults(ALLCARDS, "first");
     }
 
-    function multiFilter() {
-        let apiCall = "?";
-        if(COLORS.length) {
-            apiCall += "color=" + COLORS.join(',') + "&";
-        }
-        if(RARITY) {
-            apiCall += "rarity=" + RARITY + "&";
-        }
-        if(TYPE) {
-            apiCall += "type=" + TYPE + "&";
-        }
-
-        console.log(apiCall);
-        axios.get('{{ route('getMultiFilter') }}' + apiCall)
-        .then(function(response) {
-            return response.data;
-        });
-    }
-
-    function displayResults(cards, direction) {
-        //check if we have unchecked all of the other filters,
-        //if this is the case then we need to load the default set back in
-        //update the currentCards that we are looking at
-        //this will be used to control our pagination
+    function display(cards, direction) {
         let pageNum = 0;
-        if(cards == "NA")
-            cards = CURRENTCARDS;
-        if(!COLORS.length && !TYPE && !RARITY)
-            cards = ALLCARDS;
-        else
-            cards = multiFilter();
-            
         CURRENTCARDS = cards;
 
         let totalPages = cards.length / 50;
@@ -252,6 +222,39 @@
             });
             image.appendTo($('#cardResults'));
         }
+    }
+
+    function displayResults(cards, direction) {
+        //check if we have unchecked all of the other filters,
+        //if this is the case then we need to load the default set back in
+        //update the currentCards that we are looking at
+        //this will be used to control our pagination
+        if(cards == "NA") {
+            cards = CURRENTCARDS;
+            return display(cards, direction);
+        }
+            
+        if(!COLORS.length && !TYPE && !RARITY) {
+            cards = ALLCARDS;
+            return display(cards, direction);
+        }
+            
+        let apiCall = "?";
+        if(COLORS.length) {
+            apiCall += "color=" + COLORS.join(',') + "&";
+        }
+        if(RARITY) {
+            apiCall += "rarity=" + RARITY + "&";
+        }
+        if(TYPE) {
+            apiCall += "type=" + TYPE + "&";
+        }
+
+        axios.get('{{ route('getMultiFilter') }}' + apiCall)
+        .then(function(response) {
+            return display(response.data, direction);
+        });
+        
     }
 
     function filterByColor(color) {
