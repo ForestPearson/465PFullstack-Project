@@ -39,31 +39,31 @@
     <p>Type</p>
     <li>
         <a>
-            <input onclick="addType('Artifact')" type="radio" class="btn-check" name="typeFilter" id="artifact" autocomplete="off">
+            <input onclick="addType('Artifact')" type="radio" class="btn-check typeRadio" name="typeFilter" id="artifact" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="artifact">Artifact</label>
         </a>
         <a>
-            <input onclick="addType('Creature')" type="radio" class="btn-check" name="typeFilter" id="creature" autocomplete="off">
+            <input onclick="addType('Creature')" type="radio" class="btn-check typeRadio" name="typeFilter" id="creature" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="creature">Creature</label>
         </a>
         <a>
-            <input onclick="addType('Enchantment')" type="radio" class="btn-check" name="typeFilter" id="enchantment" autocomplete="off">
+            <input onclick="addType('Enchantment')" type="radio" class="btn-check typeRadio" name="typeFilter" id="enchantment" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="enchantment">Enchantment</label>
         </a>
         <a>
-            <input onclick="addType('Instant')" type="radio" class="btn-check" name="typeFilter" id="instant" autocomplete="off">
+            <input onclick="addType('Instant')" type="radio" class="btn-check typeRadio" name="typeFilter" id="instant" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="instant">Instant</label>
         </a>
         <a>
-            <input onclick="addType('Land')" type="radio" class="btn-check" name="typeFilter" id="land" autocomplete="off">
+            <input onclick="addType('Land')" type="radio" class="btn-check typeRadio" name="typeFilter" id="land" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="land">Land</label>
         </a>
         <a>
-            <input onclick="addType('Planeswalker')" type="radio" class="btn-check" name="typeFilter" id="planeswalker" autocomplete="off">
+            <input onclick="addType('Planeswalker')" type="radio" class="btn-check typeRadio" name="typeFilter" id="planeswalker" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="planeswalker">Planeswalker</label>
         </a>
         <a>
-            <input onclick="addType('Sorcery')" type="radio" class="btn-check" name="typeFilter" id="sorcery" autocomplete="off">
+            <input onclick="addType('Sorcery')" type="radio" class="btn-check typeRadio" name="typeFilter" id="sorcery" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="sorcery">Sorcery</label>
         </a>
     </li>
@@ -73,19 +73,19 @@
     <li>
     <p>Rarity</p>
         <a>
-            <input onclick="addRarity('Common')" type="radio" class="btn-check" name="rarityFilter" id="common" autocomplete="off">
+            <input onclick="addRarity('Common')" type="radio" class="btn-check rarityRadio" name="rarityFilter" id="common" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="common">common</label>
         </a>
         <a>
-            <input onclick="addRarity('Uncommon')" type="radio" class="btn-check" name="rarityFilter" id="uncommon" autocomplete="off">
+            <input onclick="addRarity('Uncommon')" type="radio" class="btn-check rarityRadio" name="rarityFilter" id="uncommon" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="uncommon">Uncommon</label>
         </a>
         <a>
-            <input onclick="addRarity('Rare')" type="radio" class="btn-check" name="rarityFilter" id="rare" autocomplete="off">
+            <input onclick="addRarity('Rare')" type="radio" class="btn-check rarityRadio" name="rarityFilter" id="rare" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="rare">Rare</label>
         </a>
         <a>
-            <input onclick="addRarity('Mythic')" type="radio" class="btn-check" name="rarityFilter" id="mythicRare" autocomplete="off">
+            <input onclick="addRarity('Mythic')" type="radio" class="btn-check rarityRadio" name="rarityFilter" id="mythicRare" autocomplete="off">
             <label class="btn btn-outline-warning mb-1" for="mythicRare">Mythic Rare</label> 
         </a>         
     </li>
@@ -141,6 +141,28 @@
         });
     });
 
+    $(document).ready(function() {
+        $("input[type=radio]").click(function() {
+            // Get the storedValue
+            var previousValue = $(this).data('storedValue');
+            // if previousValue = true then
+            //     Step 1: toggle radio button check mark.
+            //     Step 2: save data-StoredValue as false to indicate radio button is unchecked.
+            if (previousValue) {
+            $(this).prop('checked', !previousValue);
+            $(this).data('storedValue', !previousValue);
+            }
+            // If previousValue is other than true
+            //    Step 1: save data-StoredValue as true to for currently checked radio button.
+            //    Step 2: save data-StoredValue as false for all non-checked radio buttons.
+            else{
+            $(this).data('storedValue', true);
+            $("input[type=radio]:not(:checked)").data("storedValue", false);
+            }
+        });
+    });
+
+
     function addColor(color) {
         if(COLORS.includes(color)) {
             COLORS.splice(COLORS.indexOf(color), 1);
@@ -164,7 +186,7 @@
 
     function addType(type) {
         if(TYPE == type)
-            TYPE = NULL;
+            TYPE = null;
         else
             TYPE = type;
         displayResults(ALLCARDS, "first");
@@ -180,7 +202,7 @@
 
     function addRarity(rare) {
         if(RARITY == rare)
-            RARITY = NULL;
+            RARITY = null;
         else
             RARITY = rare;
         displayResults(ALLCARDS, "first");
@@ -253,44 +275,6 @@
         axios.get('{{ route('getMultiFilter') }}' + apiCall)
         .then(function(response) {
             return display(response.data, direction);
-        });
-        
-    }
-
-    function filterByColor(color) {
-        if(COLORS.includes(color)) {
-            COLORS.splice(COLORS.indexOf(color), 1);
-            console.log(color + " unclicked");
-        }
-        else {
-            COLORS.push(color);
-            console.log(color + " clicked");
-        }
-        console.log(COLORS);
-
-        let colorString = "?color=" + COLORS.join(',');
-
-        axios.get('{{ route('getCardsByColor') }}' + colorString)
-        .then(function(response) {
-            console.log(response.data);
-            return response.data;
-            //displayResults(response.data, 0);
-        });
-    }
-
-    function filterByType(type) {
-        typeString = "?type=" + type;
-        axios.get('{{ route('getCardsByType') }}' + typeString )
-        .then(function(response) {
-            displayResults(response.data, 0);
-        });
-    }
-
-    function filterByRarity(rarity) {
-        rarityString = "?rarity=" + rarity;
-        axios.get('{{ route('getCardsByRarity') }}' + rarityString)
-        .then(function(response) {
-            displayResults(response.data, 0);
         });
     }
 
