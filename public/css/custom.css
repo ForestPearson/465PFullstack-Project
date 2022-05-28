@@ -28,7 +28,7 @@ li.page-item
 
 .backdrop {
     height: 60vh;
-    width: 100vw;
+    width: 300vw;
     opacity: 0.5;
     object-position: 0% 30%;
     object-fit: none;
