@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\DeckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,8 @@ Route::controller(UserController::class)->group(function() {
 
 Route::controller(CardController::class)->group(function() {
     Route::get('/browse', 'show')->name('browse');
+});
+
+Route::controller(DeckController::class)->group(function() {
+    Route::get('/decks', 'show')->name('decks');
 });

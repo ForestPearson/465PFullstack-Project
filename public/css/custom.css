@@ -16,6 +16,14 @@ li.page-item
     display: none;
 }
 
+.backdrop {
+    height: 60vh;
+    width: 100vw;
+    opacity: 0.5;
+    object-position: center;
+    object-fit: none;
+}
+
 .page-item:first-child,
 .page-item:nth-child( 2 ),
 .page-item:nth-last-child( 2 ),

@@ -21,7 +21,7 @@ CREATE TABLE decks (
 	updated_at TIMESTAMP,
 	deleted_at TIMESTAMP,
 	CONSTRAINT decks_pk PRIMARY KEY("deck_id"),
-	CONSTRAINT decks_fk FOREIGN KEY("account_id") REFERENCES "accounts"("account_id")
+	CONSTRAINT decks_fk FOREIGN KEY("account_id") REFERENCES "users"("id")
 );
 
 CREATE TABLE card_rel (

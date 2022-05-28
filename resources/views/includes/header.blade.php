@@ -88,7 +88,7 @@
                         </li>
                         @if (Auth::user() != NULL)
                         <li class="nav-item @if (Route::current()->getName() == '') active @endif">
-                            <a class="nav-link" href="{{ route('welcome') }}">
+                            <a class="nav-link" href="{{ route('decks') }}">
                                 Your Decks
                             </a>
                         </li>

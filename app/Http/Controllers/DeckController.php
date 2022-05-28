@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 use App\Models\Decks;
@@ -10,12 +11,18 @@ use App\Models\Cards;
 use App\Models\CardRel;
 use App\Models\Accounts;
 
-class CardController extends Controller {
+class DeckController extends Controller {
+
+    public function show() {
+        $user = Auth::user();
+        $userDecks = Decks::where('account_id', $user->id)->get();
+        return view('decks', compact('user', 'userDecks'));
+    }
+
 
     public function getUserDecks() {
         $user = Auth::user();
         $id = $user->id;
-        //auth()->user()->load('decks');
         $alldecks = Decks::where('account_id', $id)->get();
         $decks = json_encode($alldecks);
 

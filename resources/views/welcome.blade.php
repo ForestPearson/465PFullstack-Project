@@ -3,9 +3,9 @@
 
 @section('body')
 
-<div class="container pt-4 bootstrap-grid text-light mb-5">
-    <div class="row row1">
-        <div class="col-lg-9 col-md-12 col-sm-12">
+<div class="container bootstrap-grid text-light mb-5 mt-4 text-center  mx-auto">
+    <div class="row row1 mx-auto">
+        <div class="col-lg-9 col-md-12 col-sm-12 mx-auto">
             <h1>Welcome to MTG Deck Builder</h1>
             <p>
             MTG Deck Builder is the all in one Magic the Gathering deck building website.
@@ -16,10 +16,18 @@
             </p>
         </div>
     </div>
-
-    <div class="row col-3 pt-4">
-        <button onclick="window.location='{{ route("admin") }}'" class="btn btn-primary col mx-1">Temp Admin Button</button>
-    </div>
 </div>
 
+<div class="container mx-auto text-light">
+    <marquee  behavior="alternate" direction="left" scrollamount="1">          
+        <img class="backdrop" src= {{asset('image/backdrop.jpg')}} alt="moving background">
+    </marquee>  
+</div>
+
+<div class="container fixed-bottom text-light text-center w-50">
+    <p>
+    IMPORTANT DISCLAIMER: The images used on this website remain copyright of their respective owners
+    and are not owned by the MTG Deck Builder team. The images are used for strictly educational purposes only.
+    </p>
+</div>
 @endsection
