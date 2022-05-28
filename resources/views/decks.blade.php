@@ -51,7 +51,7 @@
                 </div>
                 <div class="modal-body" id="addCardModalResult">
                     <select class="form-select w-50" onchange="updateImagePreview()" aria-label="Default select example">
-                        <option selected disabled="disabled">Pick Image</option>
+                        <option selected disabled="disabled" value="None">Pick Image</option>
                         <option value="Black">Black</option>
                         <option value="Red">Red</option>
                         <option value="Blue">Blue</option>
@@ -91,7 +91,7 @@
             let value = $('.form-select').val();
             console.log(value);
             images = {
-                "Pick Image": "{{asset('image/deckBack.jpg')}}",
+                "None": "{{asset('image/deckBack.jpg')}}",
                 "Black": "{{asset('image/BlackDeck.png')}}",
                 "Red": "{{asset('image/RedDeck.png')}}",
                 "Blue": "{{asset('image/BlueDeck.png')}}",

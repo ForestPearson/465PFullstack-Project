@@ -26,10 +26,13 @@ li.page-item
     object-fit: scale-down;
 }
 
-.backdrop {
+.marquee {
     height: 60vh;
-    width: 300vw;
+}
+
+.backdrop {
     opacity: 0.5;
+    width: 150vw;
     object-position: 0% 30%;
     object-fit: none;
 }

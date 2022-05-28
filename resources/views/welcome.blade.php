@@ -19,7 +19,7 @@
 </div>
 
 <div class="container d-flex mx-auto text-light">
-    <marquee  behavior="alternate" direction="left" scrollamount="1">          
+    <marquee  class="marquee" behavior="alternate" direction="left" scrollamount="5" hspace="100vw">          
         <img class="backdrop" src= {{asset('image/backdrop.jpg')}} alt="moving background">
     </marquee>  
 </div>
