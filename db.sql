@@ -14,20 +14,23 @@ CREATE TABLE cards (
 );
 
 CREATE TABLE decks (
-	deck_id INT NOT NULL,
+	id serial NOT NULL,
 	account_id INT NOT NULL,
 	name TEXT NOT NULL,
 	preview TEXT,
 	created_at TIMESTAMP,
 	updated_at TIMESTAMP,
 	deleted_at TIMESTAMP,
-	CONSTRAINT decks_pk PRIMARY KEY("deck_id"),
+	CONSTRAINT decks_pk PRIMARY KEY("id"),
 	CONSTRAINT decks_fk FOREIGN KEY("account_id") REFERENCES "users"("id")
 );
 
 CREATE TABLE card_rel (
+	id serial NOT NULL,
 	deck_id INT NOT NULL,
 	card_id INT NOT NULL,
-	CONSTRAINT cards_deck_fk FOREIGN KEY("deck_id") REFERENCES "decks"("deck_id"),
-	CONSTRAINT cards_card_fk FOREIGN KEY("card_id") REFERENCES "cards"("card_id")
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
+	CONSTRAINT cards_deck_fk FOREIGN KEY("deck_id") REFERENCES "decks"("id")
 );

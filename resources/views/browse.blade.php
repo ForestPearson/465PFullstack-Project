@@ -116,22 +116,33 @@
 
 
 <!-- Modal -->
+
 <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-slideout">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addCardModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="addCardModalResult">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog modal-dialog-slideout">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCardModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="addCardModalResult">
+                <input type="hidden" name="cardToAdd" id="cardToAdd" value="">
+                <input type="hidden" name="deck_id" id="deck_id" value="">
+            </div>
+            <div class="modal-footer">
+                @if($user)
+                    <select class="form-select" id="addCardModalSelect" onchange="updateInputs()">
+                        <option selected disabled="disabled">Select</option>
+                        @foreach($userDecks as $deck)
+                        <option value="{{$deck->id}}">Add Card to Deck: {{$deck->name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
+                <button id="addButton" type="button" class="btn btn-primary" onclick="addCardToDeck()">Add</button>
+                <div id="updateMessage">
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -186,6 +197,21 @@
         });
     });
 
+    function addCardToDeck() {
+        let card_id = $("#cardToAdd").val();
+        let deck_id = $("#deck_id").val();
+
+        axios.get('{{ route('addCardsToDeck') }}' + "?multiverseid=" + card_id + "&deck_id=" + deck_id)
+        .then(function(response) {
+            $("#updateMessage").html("<p class='bg-success text-center'>Card Added!</p>")
+        });
+    }
+
+    function updateInputs() {
+        let value = $('.form-select').val();
+        $("#deck_id").val(value);
+    }
+
     function populateModal(card) {
         $(".mtgModalCard").remove();
         $("#addCardModalLabel").text(card.card_name);
@@ -197,6 +223,7 @@
                     id: card.multiverseid
             });
         image.appendTo("#addCardModalResult");
+        $("#cardToAdd").val(card.multiverseid);
     }
 
     function clearAllFilters() {

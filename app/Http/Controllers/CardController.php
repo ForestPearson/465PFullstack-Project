@@ -14,7 +14,12 @@ use App\Models\Accounts;
 class CardController extends Controller {
 
     public function show() {
-        return view('browse');
+        $user = Auth::user();
+        if($user)
+            $userDecks = Decks::where('account_id', $user->id)->get();
+        else
+            $userDecks = NULL;
+        return view('browse', compact('user', 'userDecks'));
     }
 
     public function getAllCards() {

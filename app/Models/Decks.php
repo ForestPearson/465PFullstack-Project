@@ -12,7 +12,7 @@ final class Decks extends Model {
     protected $table = self::TABLE;
     protected $fillable = [];
 
-    public function deck_id() {
+    public function id() {
         return $this->id;
     }
 
@@ -22,6 +22,10 @@ final class Decks extends Model {
 
     public function name() {
         return $this->name;
+    }
+
+    public function preview() {
+        return $this->preview;
     }
 
     public function created_at() {
@@ -37,7 +41,7 @@ final class Decks extends Model {
     }
 
     public function cards() {
-        return $this->hasMany(CardRel::class, 'deck_id', 'deck_id');
+        return $this->hasMany(CardRel::class, 'deck_id', 'id');
     }
 
 }

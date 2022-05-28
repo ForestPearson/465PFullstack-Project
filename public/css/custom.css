@@ -20,11 +20,17 @@ li.page-item
     display: none;
 }
 
+.card-img-top {
+    height: 200px;
+    width:  auto;
+    object-fit: scale-down;
+}
+
 .backdrop {
     height: 60vh;
     width: 100vw;
     opacity: 0.5;
-    object-position: 50% 30%;
+    object-position: 0% 30%;
     object-fit: none;
 }
 

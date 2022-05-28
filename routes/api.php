@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RandomUnMicroService;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\DeckController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,9 +42,9 @@ Route::controller(CardController::class)->group(function() {
   Route::get('getMultiFilter', [CardController::class,'getMultiFilter'])->name('getMultiFilter');
 });
 Route::controller(DeckController::class)->group(function() {
-  Route::get('getUserDecks', [CardController::class,'getUserDecks'])->name('getUserDecks');
-  Route::get('getDeckByName', [CardController::class,'getDeckByName'])->name('getDeckByName');
-  Route::get('getDeckCards', [CardController::class,'getDeckCards'])->name('getDeckCards');
-  Route::get('createDeck', [CardController::class,'createDeck'])->name('createDeck');
-  Route::get('addCardsToDeck', [CardController::class,'addCardsToDeck'])->name('addCardsToDeck');
+  Route::get('getUserDecks', [DeckController::class,'getUserDecks'])->name('getUserDecks');
+  Route::get('getDeckByName', [DeckController::class,'getDeckByName'])->name('getDeckByName');
+  Route::get('getDeckCards', [DeckController::class,'getDeckCards'])->name('getDeckCards');
+  //Route::get('createDeck', [CardController::class,'createDeck'])->name('createDeck');
+  Route::get('addCardsToDeck', [DeckController::class,'addCardsToDeck'])->name('addCardsToDeck');
 });

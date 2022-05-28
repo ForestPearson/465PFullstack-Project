@@ -11,7 +11,11 @@ final class CardRel extends Model {
 
     protected $table = self::TABLE;
     protected $fillable = [];
-    
+
+    public function id() {
+        return $this->id;
+    }
+
     public function card_id() {
         return $this->card_id;
     }
@@ -19,9 +23,20 @@ final class CardRel extends Model {
     public function deck_id() {
         return $this->deck_id;
     }
+    public function created_at() {
+        return new Carbon($this->created_at);
+    }
 
+    public function updated_at() {
+        return new Carbon($this->updated_at);
+    }
+
+    public function deleted_at() {
+        return new Carbon($this->deleted_at);
+    }
+    
     public function card() {
-        return $this->hasOne(Cards::class, 'card_id', 'card_id');
+        return $this->hasOne(Cards::class, 'multiverseid', 'card_id');
     }
 
     public function deck() {

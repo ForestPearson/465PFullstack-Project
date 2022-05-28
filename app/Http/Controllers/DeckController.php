@@ -19,10 +19,12 @@ class DeckController extends Controller {
         return view('decks', compact('user', 'userDecks'));
     }
 
-    public function saveDeck() {
-        
+    public function modifyDeck(Request $request) {
+        $user = Auth::user();
+        $deck_id = $request->deck_id;
+        $deck = Decks::where('id', $deck_id)->first();
+        return view('modify', compact('user', 'deck'));
     }
-
 
     public function getUserDecks() {
         $user = Auth::user();
@@ -57,32 +59,45 @@ class DeckController extends Controller {
         if($deck->account_id != $user->id) {
             return response()->json(['error' => 'Not authorized.'], 404);
         }
-        return response()->json($decks->cards);
+        return response()->json($decks->cards->deck($deck->id));
+        //return response()->json($decks->cards);
     }
 
     public function createDeck(Request $request) {
         $user = Auth::user();
         $deck_name = $request->input('deck_name');
+        $deck_art = $request->input('deck_art');
         $deck_model = new Decks;
         $deck_model->name = $deck_name;
         $deck_model->account_id = $user->id;
+        $deck_model->preview = $deck_art;
         $deck_model->save();
         return redirect()->route('decks');
     }
 
-    public function addCardsToDeck(Request $request) {
+    public function getDeckCard(Request $request) {
         $user = Auth::user();
         $multiverseid = $request->input('multiverseid');
         $deck_name = $request->input('deck_name');
         $card = Card::where('multiverseid',$multiverseid)->first();
         $deck = Decks::where('name', 'like', '%' . $deck_name . '%')->get();
+        if(!$decks) {
+            return response()->json(['error' => 'Deck not found.'], 404);
+        }
         if($deck->account_id != $user->id) {
             return response()->json(['error' => 'Not authorized.'], 404);
         }
+        return response()->json($decks->cards->card($card->id));
+        //return response()->json($decks->cards);
+    }
+
+    public function addCardsToDeck(Request $request) {
+        $multiverseid = $request->input('multiverseid');
+        $deck_id = $request->input('deck_id');
         $card_model = new CardRel;
-        $card_model->deck_id = $deck->id;
-        $card_model->card_id = $card->id;
+        $card_model->deck_id = $deck_id;
+        $card_model->card_id = $multiverseid;
         $card_model->save();
-        return redirect()->route('decks');
+        return response()->json('Card added');
     }
 }

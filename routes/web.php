@@ -57,4 +57,6 @@ Route::controller(CardController::class)->group(function() {
 
 Route::controller(DeckController::class)->group(function() {
     Route::get('/decks', 'show')->name('decks');
+    Route::get('/createDeck', 'createDeck')->name('createDeck');
+    Route::get('/modify', 'modifyDeck')->name('modify');
 });
