@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.preview {
+    height: 250px;
+}
+
 li.page-item 
 {
     display: none;

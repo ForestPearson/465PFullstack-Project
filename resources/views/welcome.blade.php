@@ -24,7 +24,7 @@
     </marquee>  
 </div>
 
-<div class="container d-flex text-light text-center w-50">
+<div class="container d-flex text-light text-center w-50 mt-3">
     <p>
     IMPORTANT DISCLAIMER: The images used on this website remain copyright of their respective owners
     and are not owned by the MTG Deck Builder team. The images are used for strictly educational purposes only.

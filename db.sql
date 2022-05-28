@@ -17,6 +17,7 @@ CREATE TABLE decks (
 	deck_id INT NOT NULL,
 	account_id INT NOT NULL,
 	name TEXT NOT NULL,
+	preview TEXT,
 	created_at TIMESTAMP,
 	updated_at TIMESTAMP,
 	deleted_at TIMESTAMP,

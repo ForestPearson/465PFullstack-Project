@@ -19,6 +19,10 @@ class DeckController extends Controller {
         return view('decks', compact('user', 'userDecks'));
     }
 
+    public function saveDeck() {
+        
+    }
+
 
     public function getUserDecks() {
         $user = Auth::user();
