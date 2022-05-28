@@ -20,7 +20,7 @@ li.page-item
     height: 60vh;
     width: 100vw;
     opacity: 0.5;
-    object-position: center;
+    object-position: 50% 30%;
     object-fit: none;
 }
 
