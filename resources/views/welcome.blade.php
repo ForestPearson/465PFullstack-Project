@@ -3,7 +3,7 @@
 
 @section('body')
 
-<div class="container d-flex bootstrap-grid text-light mb-5 mt-4 text-center  mx-auto">
+<div class="container d-flex bootstrap-grid text-light mb-2 mt-4 text-center  mx-auto">
     <div class="row row1 mx-auto">
         <div class="col-lg-9 col-md-12 col-sm-12 mx-auto">
             <h1>Welcome to MTG Deck Builder</h1>
