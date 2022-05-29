@@ -6,11 +6,14 @@
 </div>
 
 @if(count($deck->cards))
-<div>
+<div class="container mb-5 py-5 d-flex justify-content-center flex-wrap">
     @foreach($deck->cards as $cardRel)
-    <div class="card" style="width: 18rem;">
-        <img src="{{$cardRel->card->image_url}}" class="card-img-top" alt="card in deck">
-    </div>
+    
+        <img 
+            src="{{$cardRel->card->image_url}}" 
+            class="align-middle m-2 mtgCard" 
+            alt="card in deck" 
+            style="height: 300px">
     @endforeach
 </div>
 @endif

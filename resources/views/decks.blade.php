@@ -35,8 +35,7 @@
                             <div class="row d-flex justify-content-center">
                                 <h5 class="card-title text-light text-center">{{$deck->name}}</h5>
                                 <input type="hidden" name="deck_id" value="{{$deck->id}}">
-                                <button type="submit" class="btn btn-warning col-5">View Deck</button>
-                                
+                                <button type="submit" class="btn btn-warning col-5">View Deck</button>     
                             </div>
                             <button type="button" class="btn btn-danger position-absolute top-0 end-0 p-2 m-1"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
