@@ -61,9 +61,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
+        return redirect()->route('welcome');
     }
     public function logout(Request $request)
     {
