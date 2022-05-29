@@ -17,6 +17,12 @@
     
 }
 
+.accountCard {
+    background-color: rgb(78, 78, 78);
+    color: rgb(216, 216, 216);
+    width: 18rem;
+}
+
 .preview {
     height: 250px;
 }
