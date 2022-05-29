@@ -1,9 +1,17 @@
 @extends('includes.header')
 @section('body')
 
-<div class="container row mx-auto mt-3">
+<div>
+    {{-- Create a new deck --}}
+    <div id="createDeck" class="container d-flex flex-row-reverse py-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDeckModal">
+            Create Deck
+            <i class="fa-solid fa-plus"></i>        
+        </button>
+    </div>
+    
     {{-- Display decks that the user has --}}
-    <div id="deckList" class="text-light container col-8">
+    <div id="deckList" class="container d-flex justify-content-start flex-wrap">
         {{-- Message if user has no decks --}}
         @if(!count($userDecks))
             <div class="alert alert-danger">
@@ -13,30 +21,23 @@
         {{-- Display all of the decks that a user has available to them --}}
         @else
             @foreach($userDecks as $deck)
-                <form action="{{ route('modify') }}">
-                    <div class="card" style="width: 10rem;">
-                        <img class="card-img-top" src="{{asset($deck->preview)}}" alt="Card image cap">
+                <form action="{{ route('modify') }}" class="p-2">
+                    <div class="card" style="width: 250px; background-color: rgb(78, 78, 78);">
+                        <img 
+                            class="card-img-top pt-2 rounded-3 h-300px w-auto" 
+                            src="{{asset($deck->preview)}}" 
+                            alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title text-dark">{{$deck->name}}</h5>
+                            <h5 class="card-title text-light">{{$deck->name}}</h5>
                             <input type="hidden" name="deck_id" value="{{$deck->id}}">
-                            <button type="submit" class="btn btn-primary">View Deck</button>
+                            <button type="submit" class="btn btn-warning">View Deck</button>
+                            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </div>
                 </form>
             @endforeach
         @endif
     </div>
-
-    {{-- Create a new deck --}}
-    <div id="createDeck" class="text-light col-3 offset-1 container">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDeckModal">
-            Create Deck
-            <i class="fa-solid fa-plus"></i>        
-        </button>
-    </div>
-
-
-    
 </div>
 
 {{-- Create deck modal --}}
