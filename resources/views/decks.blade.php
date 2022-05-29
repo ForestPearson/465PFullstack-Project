@@ -24,8 +24,12 @@
                 <form action="{{ route('modify') }}" class="p-2">
                     <div class="card" style="width: 250px; background-color: rgb(78, 78, 78);">
                         <img 
-                            class="card-img-top pt-2 rounded-3 h-300px w-auto" 
-                            src="{{asset($deck->preview)}}" 
+                            class="card-img-top pt-2 deckPreview"
+                            @if($deck->preview) 
+                                src="{{asset($deck->preview)}}"
+                            @else
+                                src="{{asset('image/deckBack.jpg')}}"
+                            @endif
                             alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-light">{{$deck->name}}</h5>

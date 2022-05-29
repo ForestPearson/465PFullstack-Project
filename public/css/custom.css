@@ -20,19 +20,22 @@ li.page-item
     display: none;
 }
 
-.card-img-top {
+.deckPreview {
     height: 300px;
     width:  auto;
     object-fit: scale-down;
+    border-style: hidden;
+    border-radius: 45%;
 }
 
 .marquee {
-    height: 60vh;
+    width: 100vw;
 }
 
 .backdrop {
     opacity: 0.5;
-    width: 150vw;
+    height: 60vh;
+    width: 100vw;
     object-position: 0% 30%;
     object-fit: none;
 }
