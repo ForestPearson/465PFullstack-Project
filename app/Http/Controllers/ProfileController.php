@@ -20,6 +20,18 @@ class ProfileController extends Controller {
         return view('profile', compact('firstName', 'lastName', 'email'));
     }
 
+    public function changeProfile(Request $request) {
+        $user = Auth::user();
+        $firstName = $request->input('first_name');
+        $lastName = $request->input('last_name');
+        $email = $request->input('email');
+        $user->first_name = $firstName;
+        $user->last_name = $lastName;
+        $user->email = $email;
+        $user->save();
+        return redirect('/profile');
+    }
+
     public function signUp() {
         return view('signup');
     }

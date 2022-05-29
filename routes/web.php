@@ -27,6 +27,7 @@ Route::controller(WelcomeController::class)->group(function() {
 Route::controller(ProfileController::class)->group(function() {
     Route::get('/profile', 'show')->name('profile');
     Route::get('/signup', 'signUp')->name('signup');
+    Route::get('/changeProfile', 'changeProfile')->name('changeProfile');
 });
 
 Route::controller(AdminController::class)->group(function() {

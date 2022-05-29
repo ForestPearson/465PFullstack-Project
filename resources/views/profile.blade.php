@@ -9,19 +9,19 @@
             <h1>Hello {{ $firstName }} {{ $lastName }}</h1>
         </div>
     </div>
-    <form class="bg-dark text-light mx-auto mt-4 p-4 rounded border" style="max-width: 60%; min-width: 20em;">
+    <form action="{{ route('changeProfile') }}" class="bg-dark text-light mx-auto mt-4 p-4 rounded border" style="max-width: 60%; min-width: 20em;">
         <h1 class="mb-3">Edit Your Information</h1>
         <div class="mb-3 row">
             <label for="name1" class="form-label col-sm-6">First name:</label>
-            <input type="name" class="form-control col" id="name1" value={{ $firstName }}>
+            <input type="name" class="form-control col" id="name1" name="first_name" value="{{ $firstName }}">
         </div>
         <div class="mb-3 row">
             <label for="name2" class="form-label col-sm-6">Last name:</label>
-            <input type="name" class="form-control col" id="name2" value={{ $lastName }}>
+            <input type="name" class="form-control col" id="name2" name="last_name" value="{{ $lastName }}">
         </div>
             <div class="mb-3 row">
             <label for="email1" class="form-label col-sm-6">Email:</label>
-            <input type="email" class="form-control col" id="email1" value={{ $email }}>
+            <input type="email" class="form-control col" id="email1" name="email" value="{{ $email }}">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary col mx-1">Submit</button>

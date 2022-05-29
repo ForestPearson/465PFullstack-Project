@@ -110,7 +110,7 @@
 </div>
 
 <div>
-    <p class="text-light text-center fs-3" id="activeFilters"></p>
+    <p class="text-light text-center fs-3" id="activeFilters" style="font-family:fantasy;"></p>
 </div>
 
 
@@ -133,13 +133,14 @@
                     <select class="form-select" id="addCardModalSelect" onchange="updateInputs()">
                         <option selected disabled="disabled">Select</option>
                         @foreach($userDecks as $deck)
-                        <option value="{{$deck->id}}">Add Card to Deck: {{$deck->name}}</option>
+                        <option value="{{$deck->id}}" class="deckOptions">Add Card to Deck: {{$deck->name}}</option>
                         @endforeach
                     </select>
+                    <div>
+                        <p id="updateMessage"></p>
+                    </div>
                     <button id="addButton" type="button" class="btn btn-warning" onclick="addCardToDeck()">Add</button>
                 @endif
-                <div id="updateMessage">
-                </div>
             </div>
         </div>
     </div>
@@ -203,7 +204,7 @@
 
         axios.get('{{ route('addCardsToDeck') }}' + "?multiverseid=" + card_id + "&deck_id=" + deck_id)
         .then(function(response) {
-            $("#updateMessage").html("<p class='bg-success text-center'>Card Added!</p>")
+            $("#updateMessage").text("Card Added!");
         });
     }
 
@@ -214,6 +215,7 @@
 
     function populateModal(card) {
         $(".mtgModalCard").remove();
+        $("#updateMessage").text("");
         $("#addCardModalLabel").text(card.card_name);
         let image = $("<img/>", {
                     src: card.image_url,
