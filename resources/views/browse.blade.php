@@ -118,17 +118,17 @@
 <!-- Modal -->
 
 <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-slideout">
-        <div class="modal-content">
-            <div class="modal-header">
+    <div class="modal-dialog modal-dialog-slideout" style="background-color: rgb(78, 78, 78);">
+        <div class="modal-content customModalStyle">
+            <div class="modal-header border-warning">
                 <h5 class="modal-title" id="addCardModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="addCardModalResult">
+            <div class="modal-body d-flex justify-content-center" id="addCardModalResult">
                 <input type="hidden" name="cardToAdd" id="cardToAdd" value="">
                 <input type="hidden" name="deck_id" id="deck_id" value="">
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-warning">
                 @if($user)
                     <select class="form-select" id="addCardModalSelect" onchange="updateInputs()">
                         <option selected disabled="disabled">Select</option>
@@ -136,8 +136,8 @@
                         <option value="{{$deck->id}}">Add Card to Deck: {{$deck->name}}</option>
                         @endforeach
                     </select>
-                    @endif
-                <button id="addButton" type="button" class="btn btn-primary" onclick="addCardToDeck()">Add</button>
+                    <button id="addButton" type="button" class="btn btn-warning" onclick="addCardToDeck()">Add</button>
+                @endif
                 <div id="updateMessage">
                 </div>
             </div>
@@ -147,7 +147,7 @@
 
 
 
-<div class="container mb-5 py-5 d-flex justify-content-center flex-wrap" id="cardResults">
+<div class="container mb-5 pt-2 pb-5 d-flex justify-content-center flex-wrap" id="cardResults">
 
     
 </div>

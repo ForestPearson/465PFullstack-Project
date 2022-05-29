@@ -120,11 +120,10 @@
         @csrf
             <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content text-dark">
-                        <div class="modal-header text-dark">
+                    <div class="modal-content customModalStyle">
+                        <div class="modal-header border-warning">
                             <h5 class="modal-title" id="ModalLongTitle">Sign-in</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
                         <div class="modal-body">
@@ -137,8 +136,8 @@
                                 <input type="password" name="password" class="form-control col" id="password">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <div class="modal-footer border-warning">
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">Sign-in</button>
                         </div>
                     </div>
