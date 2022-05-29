@@ -51,8 +51,8 @@
     <form action="{{ route('createDeck') }}" >
         @csrf
         <div class="modal-dialog modal-dialog-slideout">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content customModalStyle">
+                <div class="modal-header border-warning">
                     <h5 class="modal-title" id="addDeckModalLabel">Create New Deck</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -80,9 +80,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer border-warning">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-warning">Save changes</button>
                 </div>
             </div>
         </div>
