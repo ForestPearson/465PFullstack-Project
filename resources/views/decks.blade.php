@@ -11,7 +11,7 @@
     </div>
     
     {{-- Display decks that the user has --}}
-    <div id="deckList" class="container d-flex justify-content-start flex-wrap">
+    <div id="deckList" class="container d-flex justify-content-md-start justify-content-center flex-wrap">
         {{-- Message if user has no decks --}}
         @if(!count($userDecks))
             <div class="alert alert-danger">
@@ -32,10 +32,12 @@
                             @endif
                             alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title text-light">{{$deck->name}}</h5>
+                            <h5 class="card-title text-light text-center">{{$deck->name}}</h5>
                             <input type="hidden" name="deck_id" value="{{$deck->id}}">
-                            <button type="submit" class="btn btn-warning">View Deck</button>
-                            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="row d-flex justify-content-center">
+                                <button type="submit" class="btn btn-warning col-6">View Deck</button>
+                                <button type="button" class="btn btn-danger offset-2 col-2"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
                         </div>
                     </div>
                 </form>
