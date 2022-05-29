@@ -33,6 +33,9 @@ Route::controller(ProfileController::class)->group(function() {
 Route::controller(AdminController::class)->group(function() {
     Route::get('/admin', 'show')->name('admin');
     Route::get('/sync', 'syncDB')->name('sync');
+    Route::get('/deleteAccount/{id}', 'deleteAccount')->name('deleteAccount');
+    Route::get('/makeAdmin/{id}', 'makeAdmin')->name('makeAdmin');
+    Route::get('/revokeAdmin/{id}', 'revokeAdmin')->name('revokeAdmin');
 });
 
 Route::post('login', [LoginController::class,'authenticate'])->name('login');

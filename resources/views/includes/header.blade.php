@@ -93,11 +93,18 @@
                                 Your Decks
                             </a>
                         </li>
-                            <li class="nav-item @if (Route::current()->getName() == 'Profile') active @endif">
-                                <a class="nav-link" href="{{ route('profile') }}">
-                                    Profile
+                        <li class="nav-item @if (Route::current()->getName() == 'Profile') active @endif">
+                            <a class="nav-link" href="{{ route('profile') }}">
+                                Profile
+                            </a>
+                        </li>
+                            @if(Auth::user()->is_admin)
+                            <li>
+                                <a class="nav-link" href="{{ route('admin') }}">
+                                    Admin
                                 </a>
                             </li>
+                            @endif
                         @endif
                     </ul>
                     

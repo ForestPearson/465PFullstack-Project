@@ -3,18 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use mtgsdk\Card;
 
 use App\Models\Decks;
 use App\Models\Cards;
 use App\Models\CardRel;
-use App\Models\Accounts;
+use App\Models\User;
 
 
 class AdminController extends Controller {
     public function show() {
-        return view('admin');
+        $user = Auth::user();
+        $allUsers = User::all();
+        return view('admin', compact('user', 'allUsers'));
+    }
+
+    public function deleteAccount(Request $request) {
+        $user = User::find($request->id);
+        $user->delete();
+        return redirect()->route('admin');
+    }
+
+    public function makeAdmin(Request $request) {
+        $user = User::find($request->id);
+        $user->is_admin = 1;
+        $user->save();
+        return redirect()->route('admin');
+    }
+
+    public function revokeAdmin(Request $request) {
+        $user = User::find($request->id);
+        $user->is_admin = 0;
+        $user->save();
+        return redirect()->route('admin');
     }
 
     //Syncs the DB and should only need to be run when either
@@ -95,4 +118,5 @@ class AdminController extends Controller {
         //return the view with the cards.
         return redirect()->route('admin');
     }
+
 }
