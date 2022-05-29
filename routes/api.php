@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
 Route::controller(CardController::class)->group(function() {
   Route::get('getAllCards', [CardController::class,'getAllCards'])->name('getAllCards');
   Route::get('getCardByName', [CardController::class,'getCardByName'])->name('getCardByName');
@@ -48,3 +49,4 @@ Route::controller(DeckController::class)->group(function() {
   //Route::get('createDeck', [CardController::class,'createDeck'])->name('createDeck');
   Route::get('addCardsToDeck', [DeckController::class,'addCardsToDeck'])->name('addCardsToDeck');
 });
+*/

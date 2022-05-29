@@ -59,4 +59,22 @@ Route::controller(DeckController::class)->group(function() {
     Route::get('/decks', 'show')->name('decks');
     Route::get('/createDeck', 'createDeck')->name('createDeck');
     Route::get('/modify', 'modifyDeck')->name('modify');
+    Route::get('/deleteCard', 'deleteCard')->name('deleteCard');
+    Route::get('/deleteDeck/{deck_id}', 'deleteDeck')->name('deleteDeck');
+});
+
+Route::controller(CardController::class)->group(function() {
+    Route::get('getAllCards', [CardController::class,'getAllCards'])->name('getAllCards');
+    Route::get('getCardByName', [CardController::class,'getCardByName'])->name('getCardByName');
+    Route::get('getCardsByColor', [CardController::class,'getCardsByColor'])->name('getCardsByColor');
+    Route::get('getCardsBySet', [CardController::class,'getCardsBySet'])->name('getCardsBySet');
+    Route::get('getCardsByType', [CardController::class,'getCardsByType'])->name('getCardsByType');
+    Route::get('getCardsByRarity', [CardController::class,'getCardsByRarity'])->name('getCardsByRarity');
+    Route::get('getMultiFilter', [CardController::class,'getMultiFilter'])->name('getMultiFilter');
+});
+Route::controller(DeckController::class)->group(function() {
+    Route::get('getUserDecks', [DeckController::class,'getUserDecks'])->name('getUserDecks');
+    Route::get('getDeckByName', [DeckController::class,'getDeckByName'])->name('getDeckByName');
+    Route::get('getDeckCards', [DeckController::class,'getDeckCards'])->name('getDeckCards');
+    Route::get('addCardsToDeck', [DeckController::class,'addCardsToDeck'])->name('addCardsToDeck');
 });

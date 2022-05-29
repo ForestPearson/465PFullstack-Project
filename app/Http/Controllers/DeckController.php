@@ -100,4 +100,22 @@ class DeckController extends Controller {
         $card_model->save();
         return response()->json('Card added');
     }
+
+    public function deleteCard(Request $request) {
+        $multiverseid = $request->input('multiverseid');
+        $deck_id = $request->input('deck_id');
+        $card_rel = CardRel::where('deck_id', $deck_id)->where('card_id', $multiverseid)->first();
+        $card_rel->delete();
+        return redirect()->back();
+    }
+
+    public function deleteDeck($deck_id) {
+        $deck = Decks::where('id', $deck_id)->first();
+        $cards = CardRel::where('deck_id', $deck_id)->get();
+        foreach($cards as $card) {
+            $card->delete();
+        }
+        $deck->delete();
+        return redirect()->back();
+    }
 }

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>MTG Deck Builder</title>
 
@@ -116,7 +117,7 @@
 
         <!-- Modal -->
         <form action="{{ route('login') }}" method="POST" enctype="mulipart/form-data">
-        {{ csrf_field() }}
+        @csrf
             <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content text-dark">

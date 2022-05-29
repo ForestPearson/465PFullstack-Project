@@ -37,7 +37,7 @@
                                 <input type="hidden" name="deck_id" value="{{$deck->id}}">
                                 <button type="submit" class="btn btn-warning col-5">View Deck</button>     
                             </div>
-                            <button type="button" class="btn btn-danger position-absolute top-0 end-0 p-2 m-1"><i class="fa-solid fa-trash-can"></i></button>
+                            <a href="{{ route('deleteDeck', ['deck_id'=> $deck->id]) }}" class="btn btn-danger position-absolute top-0 end-0 p-2 m-1"><i class="fa-solid fa-trash-can"></i></a>
                         </div>
                     </div>
                 </form>
@@ -49,7 +49,7 @@
 {{-- Create deck modal --}}
 <div class="modal fade text-center" id="addDeckModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addDeckModalLabel" aria-hidden="true">
     <form action="{{ route('createDeck') }}" >
-        {{ csrf_field() }}
+        @csrf
         <div class="modal-dialog modal-dialog-slideout">
             <div class="modal-content">
                 <div class="modal-header">
@@ -92,21 +92,20 @@
     </form>
 </div>
 
-
-    <script>
-        function updateImagePreview() {
-            let value = $('.form-select').val();
-            console.log(value);
-            images = {
-                "None": "{{asset('image/deckBack.jpg')}}",
-                "Black": "{{asset('image/BlackDeck.png')}}",
-                "Red": "{{asset('image/RedDeck.png')}}",
-                "Blue": "{{asset('image/BlueDeck.png')}}",
-                "White": "{{asset('image/WhiteDeck.png')}}",
-                "Green": "{{asset('image/GreenDeck.png')}}"
-            }
-            $("#imagePreview" ).html( "<img class='preview' src='" + images[value] + "' alt='Card image cap'>" );
-            $("#deck_art").val(images[value]);
+<script>
+    function updateImagePreview() {
+        let value = $('.form-select').val();
+        console.log(value);
+        images = {
+            "None": "{{asset('image/deckBack.jpg')}}",
+            "Black": "{{asset('image/BlackDeck.png')}}",
+            "Red": "{{asset('image/RedDeck.png')}}",
+            "Blue": "{{asset('image/BlueDeck.png')}}",
+            "White": "{{asset('image/WhiteDeck.png')}}",
+            "Green": "{{asset('image/GreenDeck.png')}}"
         }
-    </script>
+        $("#imagePreview" ).html( "<img class='preview' src='" + images[value] + "' alt='Card image cap'>" );
+        $("#deck_art").val(images[value]);
+    }
+</script>
 @endsection
