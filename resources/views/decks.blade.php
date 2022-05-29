@@ -32,12 +32,13 @@
                             @endif
                             alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title text-light text-center">{{$deck->name}}</h5>
-                            <input type="hidden" name="deck_id" value="{{$deck->id}}">
                             <div class="row d-flex justify-content-center">
-                                <button type="submit" class="btn btn-warning col-6">View Deck</button>
-                                <button type="button" class="btn btn-danger offset-2 col-2"><i class="fa-solid fa-trash-can"></i></button>
+                                <h5 class="card-title text-light text-center">{{$deck->name}}</h5>
+                                <input type="hidden" name="deck_id" value="{{$deck->id}}">
+                                <button type="submit" class="btn btn-warning col-5">View Deck</button>
+                                
                             </div>
+                            <button type="button" class="btn btn-danger position-absolute top-0 end-0 p-2 m-1"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </div>
                 </form>

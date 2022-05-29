@@ -21,7 +21,7 @@ li.page-item
 }
 
 .deckPreview {
-    height: 300px;
+    height: 270px;
     width:  auto;
     object-fit: scale-down;
     border-style: hidden;
