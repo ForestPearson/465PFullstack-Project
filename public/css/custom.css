@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.customModalStyle {
+    background-color: rgb(78, 78, 78);
+}
+
 .preview {
     height: 250px;
 }

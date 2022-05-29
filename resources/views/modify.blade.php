@@ -24,7 +24,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modifyCardModal" tabindex="-1" aria-labelledby="modifyCardModal" aria-hidden="true">
   <div class="modal-dialog modal-sm">
-    <div class="modal-content">
+    <div class="modal-content customModalStyle">
       <div class="modal-header">
         <h5 class="modal-title text-center" id="modifyCardModalLabel">Modify Card</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
