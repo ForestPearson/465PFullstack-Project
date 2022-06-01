@@ -21,6 +21,8 @@ class RandomUnMicroService extends Controller
         if(!$cards) {
             return response()->json(['error' => 'Cards not found.'], 404);
         }
-        return response()->json($cards);
+        $count = count($cards);
+        $random = str_random($count);
+        return response()->json($cards[$random]);
     }
 }
