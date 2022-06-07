@@ -16,9 +16,11 @@ This project is a fullstack mtg site that makes use of Laraval 9, PHP, JavaScrip
 To build this project go through the following instructions:
 
 - obtain the .env file and deposit it within the projects root directory.
-- Ensure that composer and php >= 8 are installed.
-- obtain a the compatible php.ini file and deposit it in the php directory.
+- Ensure that the most recent version of composer, and PHP >= 8 are installed.
+- After installing PHP 8, make sure that the correct packages are enabled. These are stored in the php.ini file within the PHP installation folder.
+- After this, obtain the Oauth Public and Private keys, these must then be placed in the storage directory of the project. 
 - run composer install within the terminal in the directory.
+- To access the persistent DB, you will need to be on a VPN and connected to the PSU servers.
 - In terminal type php artisan serve
 - Open local browser to http://127.0.0.1:8000
 
