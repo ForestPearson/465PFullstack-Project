@@ -22,6 +22,14 @@ class AdminController extends Controller {
 
     public function deleteAccount(Request $request) {
         $user = User::find($request->id);
+        $userDecks = Decks::where('account_id', $user->id)->get();
+        foreach($userDecks as $deck) {
+            $deckCards = CardRel::where('deck_id', $deck->id)->get();
+            foreach($deckCards as $card) {
+                $card->delete();
+            }
+            $deck->delete();
+        }
         $user->delete();
         return redirect()->route('admin');
     }
